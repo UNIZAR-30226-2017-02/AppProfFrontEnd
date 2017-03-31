@@ -14,4 +14,17 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="usarioProfesor">Usuario: </string>
+    <string name="tlfnoProfesor">Teléfono: </string>
+    <string name="emailProfesor">E-mail: </string>
+    <string name="ciudadProfesor">Ciudad: </string>
+    <string name="horarioProfesor">Horarios: </string>
+    <string name="asignaturasProfesor">Asignaturas: </string>
+    <string name="cursosProfesor">Cursos: </string>
+    <string name="valoracionProfesor">Valoración: </string>
+    <string name="experienciaProfesor">Experiencia: </string>
+    <string name="modalidadProfesor">Modalidad: </string>
+    <string name="action_mod_prof">Modificar perfil</string>
+    <string name="action_pag_prof">Pagar</string>
 </resources>
