@@ -29,116 +29,68 @@
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/nombreProfesorPerfil"
+                    android:text="@string/usarioProfesor"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"
-                    android:layout_marginTop="10dp"/>
-            </LinearLayout>
-
-            <LinearLayout android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ciudadProfesorPerfil"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"/>
-
-            </LinearLayout>
-
-
-            <LinearLayout android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/experienciaProfesorPerfil"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
+                    android:textSize="20sp"/>
+                <TextView android:id="@+id/usuarioProfesorPagar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/asignaturasProfesorPerfil"
-                    android:textSize="20sp" />
-
-                <Spinner
-                    android:id="@+id/asignaturasProfesorPerfil"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"/>
+                    android:textSize="20sp"/>
             </LinearLayout>
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tar_credito"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="20sp"/>
+                <EditText android:id="@+id/tar_credito"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/cursosProfesorPerfil"
-                    android:textSize="20sp" />
-
-                <Spinner
-                    android:id="@+id/cursosProfesorPerfil"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"/>
+                    android:textSize="20sp"/>
             </LinearLayout>
-
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/digito"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="20sp"/>
+                <EditText android:id="@+id/digito"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/horarioProfesorPerfil"
-                    android:textSize="20sp" />
-
-                <Spinner
-                    android:id="@+id/horarioProfesorPerfil"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"/>
+                    android:textSize="20sp"/>
             </LinearLayout>
-
-
-
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
+                <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:text="@string/caduciad"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/valoracionesProfesorPerfil"
-                    android:textSize="20sp" />
-
+                    android:textSize="20sp"/>
                 <Spinner
-                    android:id="@+id/valoracionesProfesorPerfil"
-                    android:layout_width="fill_parent"
+                    android:id="@+id/caducidad_mes"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"/>
+                <Spinner
+                    android:id="@+id/caducidad_anyo"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"/>
             </LinearLayout>
@@ -149,11 +101,15 @@
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/emailProfesorPerfil"
+                    android:text="@string/propietario"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"/>
-
+                    android:textSize="20sp"/>
+                <EditText android:id="@+id/propietario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="20sp"/>
             </LinearLayout>
 
             <LinearLayout android:orientation="horizontal"
@@ -162,26 +118,24 @@
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tlfnoProfesorPerfil"
+                    android:text="@string/condiciones"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"/>
-
+                    android:textSize="20sp"/>
             </LinearLayout>
 
-            <LinearLayout android:orientation="horizontal"
+            <LinearLayout android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/pagarProfesor"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/modalidadProfesorPerfil"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"/>
-
+                    android:layout_marginTop="20dp"
+                    android:text="@string/action_pag_prof"
+                    android:textStyle="bold" />
             </LinearLayout>
-
 
         </LinearLayout>
     </ScrollView>

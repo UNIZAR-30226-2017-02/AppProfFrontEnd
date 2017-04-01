@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Perfil_Profesor"></activity>
+        <activity android:name=".Perfil_Profesor" />
+        <activity android:name=".Pagar_Profesor"></activity>
     </application>
 
 </manifest>

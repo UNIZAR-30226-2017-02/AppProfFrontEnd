@@ -36,7 +36,14 @@
     <string name="horarioProfesorPerfil">Horario: </string>
     <string name="valoracionesProfesorPerfil">Valoraciones: </string>
     <string name="asignaturasProfesorPerfil">Asignaturas: </string>
+    <string name="modalidadProfesorPerfil">Modalidad: on-line</string>
     <string name="experienciaProfesorPerfil">Experiencia: matemáticas y física </string>
     <string name="letraDeIsak">Letra de Isak: no la entiendo </string>
+
+    <string name="tar_credito">Número de la tarjeta: </string>
+    <string name="digito">Dígito de control: </string>
+    <string name="caduciad">Fecha de caducidad: </string>
+    <string name="propietario">Nombre del titular: </string>
+    <string name="condiciones">Mediante el pago de 5$ se permite a los profesores la promoción de su anuncio, es decir, cuando un alumno realice una búsqueda cuyas condiciones satisfagan a su perfil este aparecerá en las primeras posiciones del resultado. </string>
 
 </resources>
