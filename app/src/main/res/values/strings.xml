@@ -34,11 +34,12 @@
     <string name="cursosProfesorPerfil">Cursos: </string>
     <string name="emailProfesorPerfil">E-mail: lfueris@gmail.com </string>
     <string name="horarioProfesorPerfil">Horario: </string>
-    <string name="valoracionesProfesorPerfil">Valoraciones: </string>
+
     <string name="asignaturasProfesorPerfil">Asignaturas: </string>
     <string name="modalidadProfesorPerfil">Modalidad: on-line</string>
     <string name="experienciaProfesorPerfil">Experiencia: matemáticas y física </string>
-    <string name="letraDeIsak">Letra de Isak: no la entiendo </string>
+    <string name="valoracionesProfesorPerfil">Valoración media: 4,75</string>
+    <string name="votarProfesorPerfil">Valoración (1 al 5)</string>
 
     <string name="tar_credito">Número de la tarjeta: </string>
     <string name="digito">Dígito de control: </string>
