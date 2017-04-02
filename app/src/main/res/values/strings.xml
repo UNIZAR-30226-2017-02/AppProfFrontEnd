@@ -47,4 +47,11 @@
     <string name="propietario">Nombre del titular: </string>
     <string name="condiciones">Mediante el pago de 5$ se permite a los profesores la promoción de su anuncio, es decir, cuando un alumno realice una búsqueda cuyas condiciones satisfagan a su perfil este aparecerá en las primeras posiciones del resultado. </string>
 
+    <string-array name="favoritos_array">
+        <item>Fernando García Vallés (Fabio Capello)</item>
+        <item>María Villarroya</item>
+        <item>Jamarro</item>
+        <item>Barrabin Barrabash</item>
+    </string-array>
+
 </resources>
