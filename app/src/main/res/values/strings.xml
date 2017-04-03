@@ -41,11 +41,27 @@
     <string name="valoracionesProfesorPerfil">Valoración media: 4,75</string>
     <string name="votarProfesorPerfil">Valoración (1 al 5)</string>
 
+    <string name="nombreProfesorBusqueda">Nombre: </string>
+    <string name="ciudadProfesorBusqueda">Ciudad: </string>
+    <string name="cursosProfesorBusqueda">Cursos: </string>
+    <string name="asignaturasProfesorBusqueda">Asignaturas: </string>
+    <string name="horarioProfesorBusqueda">Horario: </string>
+    <string name="action_search_prof">Buscar</string>
+
+    <string name="nombreProfesorListar">Nombre: </string>
+    <string name="ciudadProfesorListar">Ciudad: </string>
+    <string name="cursosProfesorListar">Cursos: </string>
+    <string name="asignaturasProfesorListar">Asignaturas: </string>
+    <string name="horarioProfesorListar">Horario: </string>
+    <string name="valoracionesProfesorListar">Valoración media: </string>
+
     <string name="tar_credito">Número de la tarjeta: </string>
     <string name="digito">Dígito de control: </string>
     <string name="caduciad">Fecha de caducidad: </string>
     <string name="propietario">Nombre del titular: </string>
     <string name="condiciones">Mediante el pago de 5$ se permite a los profesores la promoción de su anuncio, es decir, cuando un alumno realice una búsqueda cuyas condiciones satisfagan a su perfil este aparecerá en las primeras posiciones del resultado. </string>
+
+    <string name="no_profesores">No se han encontrado resultados para la búsqueda</string>
 
     <string-array name="favoritos_array">
         <item>Fernando García Vallés (Fabio Capello)</item>
