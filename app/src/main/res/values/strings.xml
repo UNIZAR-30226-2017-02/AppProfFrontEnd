@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppProf</string>
+    <string name="app_name">Approf</string>
 
     <!-- Strings related to login -->
     <string name="prompt_login">Login</string>
