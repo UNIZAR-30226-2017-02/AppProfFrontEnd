@@ -40,6 +40,8 @@
     <string name="experienciaProfesorPerfil">Experiencia: matemáticas y física </string>
     <string name="valoracionesProfesorPerfil">Valoración media: 4,75</string>
     <string name="votarProfesorPerfil">Valoración (1 al 5)</string>
+    <string name="action_addfav_prof">Añadir a profesores favoritos</string>
+
 
     <string name="nombreProfesorBusqueda">Nombre: </string>
     <string name="ciudadProfesorBusqueda">Ciudad: </string>
@@ -47,6 +49,7 @@
     <string name="asignaturasProfesorBusqueda">Asignaturas: </string>
     <string name="horarioProfesorBusqueda">Horario: </string>
     <string name="action_search_prof">Buscar</string>
+    <string name="action_fav_prof">Profesores favoritos</string>
 
     <string name="nombreProfesorListar">Nombre: </string>
     <string name="ciudadProfesorListar">Ciudad: </string>

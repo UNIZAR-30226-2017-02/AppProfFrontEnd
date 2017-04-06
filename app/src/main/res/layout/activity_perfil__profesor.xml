@@ -49,7 +49,7 @@
                     android:text="@string/tlfnoProfesor"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <EditText android:id="@+id/tlfnoProfesor"
+                <TextView android:id="@+id/tlfnoProfesor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -65,7 +65,7 @@
                     android:text="@string/emailProfesor"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <EditText android:id="@+id/emailProfesor"
+                <TextView android:id="@+id/emailProfesor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -82,7 +82,7 @@
                     android:text="@string/ciudadProfesor"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <EditText android:id="@+id/ciudadProfesor"
+                <TextView android:id="@+id/ciudadProfesor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -99,7 +99,12 @@
                     android:text="@string/horarioProfesor"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <cz.destil.settleup.gui.MultiSpinner android:id="@+id/horarioProfesor" />
+
+                <Spinner
+                    android:id="@+id/horariosProfesor"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
 
             </LinearLayout>
 
@@ -112,8 +117,11 @@
                     android:text="@string/asignaturasProfesor"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <cz.destil.settleup.gui.MultiSpinner android:id="@+id/asignaturasProesor" />
 
+                <Spinner
+                    android:id="@+id/asignaturasProfesor"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
 
@@ -126,7 +134,10 @@
                     android:text="@string/cursosProfesor"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <cz.destil.settleup.gui.MultiSpinner android:id="@+id/cursoProfesor" />
+                <Spinner
+                    android:id="@+id/cursosProfesor"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -156,7 +167,7 @@
                     android:text="@string/experienciaProfesor"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <EditText android:id="@+id/experienciaProfesor"
+                <TextView android:id="@+id/experienciaProfesor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -173,10 +184,12 @@
                     android:text="@string/modalidadProfesor"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <Spinner
-                    android:id="@+id/modalidadProfesor"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                <TextView android:id="@+id/modalidadProfesor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="20sp"/>
 
             </LinearLayout>
 
