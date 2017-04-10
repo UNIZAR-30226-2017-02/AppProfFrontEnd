@@ -16,18 +16,19 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">
+
+
+        </activity>
+        <activity android:name=".Perfil_Profesor"
+            android:label="@string/app_name"
+            android:parentActivityName=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".Perfil_Profesor"
-            android:label="Perfil Profesor"
-            android:parentActivityName=".LoginActivity">
         </activity>
         <activity android:name=".Pagar_Profesor"
-            android:label="Pagar Profesorr"
+            android:label="@string/app_name"
             android:parentActivityName=".Perfil_Profesor">
         </activity>
         <activity android:name=".Ver_Profesor">

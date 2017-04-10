@@ -55,6 +55,7 @@ public class Perfil_Profesor extends AppCompatActivity {
             }
         });
 
+        facade = new Facade();
         profesor = facade.perfilProfesor("Isak");
         populateFields();
 
@@ -84,24 +85,25 @@ public class Perfil_Profesor extends AppCompatActivity {
 
         if(!profesor.getHorarios().isEmpty()) {
             horarios = (Spinner) findViewById(R.id.horarioProfesor);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_spinner_item, profesor.getHorarios());
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                    android.R.layout.simple_spinner_dropdown_item, profesor.getHorarios());
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             horarios.setAdapter(adapter);
             horarios.setSelection(0);
         }
 
         if(!profesor.getCursos().isEmpty()) {
             cursos = (Spinner) findViewById(R.id.cursosProfesor);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_spinner_item, profesor.getCursos());
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                    R.layout.row_spinner, profesor.getCursos());
             cursos.setAdapter(adapter);
             cursos.setSelection(0);
         }
 
         if(!profesor.getAsignaturas().isEmpty()) {
             asignaturas = (Spinner) findViewById(R.id.asignaturasProfesor);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_spinner_item, profesor.getAsignaturas());
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                    R.layout.row_spinner, profesor.getAsignaturas());
             asignaturas.setAdapter(adapter);
             asignaturas.setSelection(0);
         }
