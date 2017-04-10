@@ -22,8 +22,14 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".Perfil_Profesor" />
-        <activity android:name=".Pagar_Profesor"></activity>
+        <activity android:name=".Perfil_Profesor"
+            android:label="Perfil Profesor"
+            android:parentActivityName=".LoginActivity">
+        </activity>
+        <activity android:name=".Pagar_Profesor"
+            android:label="Pagar Profesorr"
+            android:parentActivityName=".Perfil_Profesor">
+        </activity>
         <activity android:name=".Ver_Profesor">
 
         </activity>
