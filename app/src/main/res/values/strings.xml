@@ -28,18 +28,18 @@
     <string name="action_mod_prof">Modificar perfil</string>
     <string name="action_pag_prof">Pagar</string>
 
-    <string name="nombreProfesorPerfil">Nombre: Luis Fueris Martín </string>
-    <string name="tlfnoProfesorPerfil">Teléfono: 656626425 </string>
-    <string name="ciudadProfesorPerfil">Ciudad: Kuala Lumpur (Malasia) </string>
+    <string name="nombreProfesorPerfil">Nombre: </string>
+    <string name="tlfnoProfesorPerfil">Teléfono: </string>
+    <string name="ciudadProfesorPerfil">Ciudad: </string>
     <string name="cursosProfesorPerfil">Cursos: </string>
-    <string name="emailProfesorPerfil">E-mail: lfueris@gmail.com </string>
+    <string name="emailProfesorPerfil">E-mail: </string>
     <string name="horarioProfesorPerfil">Horario: </string>
 
     <string name="asignaturasProfesorPerfil">Asignaturas: </string>
-    <string name="modalidadProfesorPerfil">Modalidad: on-line</string>
-    <string name="experienciaProfesorPerfil">Experiencia: matemáticas y física </string>
-    <string name="valoracionesProfesorPerfil">Valoración media: 4,75</string>
-    <string name="votarProfesorPerfil">Valoración (1 al 5)</string>
+    <string name="modalidadProfesorPerfil">Modalidad: </string>
+    <string name="experienciaProfesorPerfil">Experiencia: </string>
+    <string name="valoracionesProfesorPerfil">Valoración media: </string>
+    <string name="votarProfesorPerfil">Valoración </string>
     <string name="action_addfav_prof">Añadir a profesores favoritos</string>
 
 
