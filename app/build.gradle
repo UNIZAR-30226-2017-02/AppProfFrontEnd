@@ -29,5 +29,6 @@ dependencies {
     compile 'com.android.support:design:25.0.0'
     compile 'com.android.support:support-vector-drawable:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'org.mongodb:mongo-java-driver:3.4.2'
     testCompile 'junit:junit:4.12'
 }
