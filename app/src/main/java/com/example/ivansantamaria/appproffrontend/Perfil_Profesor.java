@@ -7,34 +7,46 @@ import android.widget.TextView;
 
 public class Perfil_Profesor extends AppCompatActivity {
 
+    private Facade facade = null;
+    private ProfesorVO profesor = null;
     private TextView user;
     private TextView valoracion;
     private TextView telefono;
     private TextView email;
     private TextView ciudad;
     private TextView experiencia;
+    private TextView modalidad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil__profesor);
 
+        profesor = facade.perfilProfesor("Isak");
         populateFields();
 
     }
 
     private void populateFields() {
         user = (TextView) findViewById(R.id.usuarioProfesor);
-        user.setText("Isak");
+        user.setText(profesor.getNombreUsuario());
+
         valoracion = (TextView) findViewById(R.id.valoracionProfesor);
-        valoracion.setText("4.72");
+        valoracion.setText(profesor.getValoracion().toString());
+
         telefono = (TextView) findViewById(R.id.tlfnoProfesor);
-        telefono.setText("637 485 130");
+        telefono.setText(profesor.getTelefono());
+
         email = (TextView) findViewById(R.id.emailProfesor);
-        email.setText("isakedo@gmail.com");
+        email.setText(profesor.getTelefono());
+
         ciudad = (TextView) findViewById(R.id.ciudadProfesor);
-        ciudad.setText("Barcelona");
+        ciudad.setText(profesor.getTelefono());
+
         experiencia = (TextView) findViewById(R.id.experienciaProfesor);
-        experiencia.setText("10 años como profesor");
+        experiencia.setText(profesor.getExperiencia());
+
+        modalidad = (TextView) findViewById(R.id.modalidadProfesor);
+        modalidad.setText(profesor.getModalidad());
     }
 }
