@@ -95,7 +95,7 @@ public class Perfil_Profesor extends AppCompatActivity {
         if(!profesor.getCursos().isEmpty()) {
             cursos = (Spinner) findViewById(R.id.cursosProfesor);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
-                    R.layout.row_spinner, profesor.getCursos());
+                    android.R.layout.simple_spinner_dropdown_item, profesor.getCursos());
             cursos.setAdapter(adapter);
             cursos.setSelection(0);
         }
@@ -103,7 +103,7 @@ public class Perfil_Profesor extends AppCompatActivity {
         if(!profesor.getAsignaturas().isEmpty()) {
             asignaturas = (Spinner) findViewById(R.id.asignaturasProfesor);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
-                    R.layout.row_spinner, profesor.getAsignaturas());
+                    android.R.layout.simple_spinner_dropdown_item, profesor.getAsignaturas());
             asignaturas.setAdapter(adapter);
             asignaturas.setSelection(0);
         }
