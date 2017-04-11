@@ -29,23 +29,55 @@ public class Ver_Profesor extends AppCompatActivity {
     private TextView valoracionMedia;
 
     private RatingBar barraValoracion;
+    // Quitar texto que sale después de la valoración
     private TextView txtValoracionPerfil;
     private Button btnEnviarValoracionPerfil;
-    //private TextView txtRatingValue;
-    //private Button btnSubmit;
+
+    // Falta ListenerOnButton para anyadir profesor a favoritos
+    private Button btnAnyadirProfesorFav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_profesor);
 
+        populateFields();
+
+        // Listeners barra de Rating y botón de enviar la valoración
         addListenerOnRatingBar();
         addListenerOnButtonValoracion();
-
-        populateFields();
+        // Listener botón de profesor favorito
+        addListenerOnButtonProfFavorito();
 
     }
 
+    /*
+    * Método para añadir el Listener al botón de añadir a favoritos al profesor en cuestión
+    *
+    */
+    public void addListenerOnButtonProfFavorito() {
+
+        btnAnyadirProfesorFav = (Button) findViewById(R.id.btnAnyadirFavoritoProfesor);
+
+        btnAnyadirProfesorFav.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Falta anyadir a la base de datos
+                Toast.makeText(Ver_Profesor.this, "Profesor" + user.getText() +
+                        " añadido a favoritos",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+    }
+
+    /*
+    * Método para añadir el Listener a la barra de valoración
+    *
+    */
     public void addListenerOnRatingBar() {
 
         barraValoracion = (RatingBar) findViewById(R.id.ratingBarVerProfesor);
@@ -60,6 +92,10 @@ public class Ver_Profesor extends AppCompatActivity {
         });
     }
 
+    /*
+    * Método para añadir el Listener al botón de enviar la valoración al profesor en cuestión
+    *
+    */
     public void addListenerOnButtonValoracion() {
 
         barraValoracion = (RatingBar) findViewById(R.id.ratingBarVerProfesor);
@@ -80,6 +116,10 @@ public class Ver_Profesor extends AppCompatActivity {
 
     }
 
+    /*
+     * Método para poblar el Spinner de asignaturas que imparte el profesor en cuestión
+     *
+     */
     private void populateAsignaturasSpinner() {
 
         List<String> spinnerArray =  new ArrayList<String>();
@@ -94,8 +134,13 @@ public class Ver_Profesor extends AppCompatActivity {
 
     }
 
+    /*
+    * Método para poblar todos los campos del perfil del profesor en cuestión
+    *
+    */
     private void populateFields() {
 
+        // TODO: acceso a la base de datos en función del profesor que el usuario selecciona
         user = (TextView) findViewById(R.id.nombreProfesorPerfil);
         user.setText(" Luis Fueris");
 
@@ -105,8 +150,10 @@ public class Ver_Profesor extends AppCompatActivity {
         experiencia = (TextView) findViewById(R.id.experienciaProfesorPerfil);
         experiencia.setText(" matemáticas y física");
 
+        // Llamada a los métodos para poblar los distintos Spinners. Solo está el de asignaturas.
         populateAsignaturasSpinner();
         //populateCursosSpinner();
+        //pupulateHorariosSpinner();
 
         email = (TextView) findViewById(R.id.emailProfesorPerfil);
         email.setText(" lfueris@gmail.com");
@@ -119,8 +166,6 @@ public class Ver_Profesor extends AppCompatActivity {
 
         valoracionMedia = (TextView) findViewById(R.id.valoracionesProfesorPerfil);
         valoracionMedia.setText(" 4,75");
-
-        //valoracion = (EditText) findViewById(R.id.valoracionProfesorPerfil);
 
     }
 

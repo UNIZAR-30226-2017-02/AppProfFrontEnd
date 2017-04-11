@@ -30,7 +30,6 @@
             android:parentActivityName=".Perfil_Profesor">
         </activity>
         <activity android:name=".Ver_Profesor">
-
         </activity>
     </application>
 
