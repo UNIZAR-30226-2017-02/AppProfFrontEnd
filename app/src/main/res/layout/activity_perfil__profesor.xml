@@ -25,7 +25,7 @@
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="30sp">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,12 +37,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp"/>
             </LinearLayout>
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="30sp">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -54,11 +55,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp"/>
             </LinearLayout>
+
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="30sp">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,12 +73,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp"/>
             </LinearLayout>
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="30sp">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,12 +91,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp"/>
             </LinearLayout>
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="30sp">
 
                 <TextView  android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,14 +108,15 @@
                 <Spinner
                     android:id="@+id/horariosProfesor"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"/>
 
 
             </LinearLayout>
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="30sp">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,13 +127,14 @@
                 <Spinner
                     android:id="@+id/asignaturasProfesor"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"/>
             </LinearLayout>
 
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="30sp">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -137,28 +144,31 @@
                 <Spinner
                     android:id="@+id/cursosProfesor"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"/>
 
             </LinearLayout>
 
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="30sp">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/valoracionProfesor"
+                    android:text="@string/modalidadProfesor"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <TextView android:id="@+id/valoracionProfesor"
+                <TextView android:id="@+id/modalidadProfesor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp"/>
+
             </LinearLayout>
 
-            <LinearLayout android:orientation="horizontal"
+            <LinearLayout android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -172,31 +182,29 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"/>
-            </LinearLayout>
-
-            <LinearLayout android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/modalidadProfesor"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"/>
-                <TextView android:id="@+id/modalidadProfesor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"/>
-
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="bottom">
+                android:layout_height="match_parent">
+
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valoracionProfesor"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="20sp"/>
+                <RatingBar android:id="@+id/valoracionProfesor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:isIndicator="true"/>
+            </LinearLayout>
+
+            <LinearLayout android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/modifyProfesor"

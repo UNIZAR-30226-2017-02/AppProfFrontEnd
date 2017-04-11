@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class Pagar_Profesor extends AppCompatActivity {
 
@@ -19,6 +22,14 @@ public class Pagar_Profesor extends AppCompatActivity {
     private Button pagarButton = null;
     private Spinner mesCad = null;
     private Spinner anyoCad = null;
+
+    private static final ArrayList<String> mesCadList = new ArrayList<String>()
+    {{ add("---"); add("01"); add("02"); add("03"); add("04"); add("05"); add("06"); add("07");
+        add("08"); add("09"); add("10"); add("11"); add("12");}};
+
+    private static final ArrayList<String> anyoCadList = new ArrayList<String>()
+    {{ add("---"); add("2016"); add("2017"); add("2018"); add("2019"); add("2020"); add("2021"); add("2022");
+        add("2023"); add("2024"); add("2025"); add("2026"); add("2027");}};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,5 +80,17 @@ public class Pagar_Profesor extends AppCompatActivity {
 
         user = (TextView) findViewById(R.id.usuarioProfesorPagar);
         user.setText("Isak");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, R.layout.row_spinner, mesCadList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mesCad = (Spinner) findViewById(R.id.caducidad_mes);
+        mesCad.setAdapter(adapter);
+
+        adapter = new ArrayAdapter<>(
+                this, R.layout.row_spinner, anyoCadList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        anyoCad = (Spinner) findViewById(R.id.caducidad_anyo);
+        anyoCad.setAdapter(adapter);
     }
 }

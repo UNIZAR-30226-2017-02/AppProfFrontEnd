@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ public class Perfil_Profesor extends AppCompatActivity {
 
 
     private TextView user;
-    private TextView valoracion;
+    private RatingBar valoracion;
     private TextView telefono;
     private TextView email;
     private TextView ciudad;
@@ -65,17 +66,17 @@ public class Perfil_Profesor extends AppCompatActivity {
         user = (TextView) findViewById(R.id.usuarioProfesor);
         user.setText(profesor.getNombreUsuario());
 
-        valoracion = (TextView) findViewById(R.id.valoracionProfesor);
-        valoracion.setText(profesor.getValoracion().toString());
+        valoracion = (RatingBar) findViewById(R.id.valoracionProfesor);
+        valoracion.setRating(profesor.getValoracion());
 
         telefono = (TextView) findViewById(R.id.tlfnoProfesor);
         telefono.setText(profesor.getTelefono());
 
         email = (TextView) findViewById(R.id.emailProfesor);
-        email.setText(profesor.getTelefono());
+        email.setText(profesor.getMail());
 
         ciudad = (TextView) findViewById(R.id.ciudadProfesor);
-        ciudad.setText(profesor.getTelefono());
+        ciudad.setText(profesor.getCiudad());
 
         experiencia = (TextView) findViewById(R.id.experienciaProfesor);
         experiencia.setText(profesor.getExperiencia());
@@ -83,29 +84,28 @@ public class Perfil_Profesor extends AppCompatActivity {
         modalidad = (TextView) findViewById(R.id.modalidadProfesor);
         modalidad.setText(profesor.getModalidad());
 
-        if(!profesor.getHorarios().isEmpty()) {
-            horarios = (Spinner) findViewById(R.id.horarioProfesor);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
-                    android.R.layout.simple_spinner_dropdown_item, profesor.getHorarios());
+        if(profesor.getHorarios() != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this, R.layout.row_spinner, profesor.getHorarios());
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            horarios = (Spinner) findViewById(R.id.horariosProfesor);
             horarios.setAdapter(adapter);
-            horarios.setSelection(0);
         }
 
-        if(!profesor.getCursos().isEmpty()) {
+        if(profesor.getCursos() != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this, R.layout.row_spinner, profesor.getCursos());
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             cursos = (Spinner) findViewById(R.id.cursosProfesor);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
-                    android.R.layout.simple_spinner_item, profesor.getCursos());
             cursos.setAdapter(adapter);
-            cursos.setSelection(0);
         }
 
-        if(!profesor.getAsignaturas().isEmpty()) {
+        if(profesor.getAsignaturas() != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    this, R.layout.row_spinner, profesor.getAsignaturas());
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             asignaturas = (Spinner) findViewById(R.id.asignaturasProfesor);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
-                    android.R.layout.simple_spinner_item, profesor.getAsignaturas());
             asignaturas.setAdapter(adapter);
-            asignaturas.setSelection(0);
         }
     }
 }
