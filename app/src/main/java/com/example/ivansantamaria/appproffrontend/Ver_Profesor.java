@@ -2,13 +2,13 @@ package com.example.ivansantamaria.appproffrontend;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RatingBar;
-import android.widget.Spinner;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.RatingBar.OnRatingBarChangeListener;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -155,8 +155,10 @@ public class Ver_Profesor extends AppCompatActivity {
         //populateCursosSpinner();
         //pupulateHorariosSpinner();
 
+        /*final HashCode hashCode = Hashing.sha1().hashString("luis", Charset.defaultCharset());
+
         email = (TextView) findViewById(R.id.emailProfesorPerfil);
-        email.setText(" lfueris@gmail.com");
+        email.setText(hashCode.toString())*/
 
         telefono = (TextView) findViewById(R.id.tlfnoProfesorPerfil);
         telefono.setText(" 656626425");
