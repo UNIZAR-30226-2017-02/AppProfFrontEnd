@@ -40,6 +40,7 @@
     <string name="experienciaProfesorPerfil">Experiencia: </string>
     <string name="valoracionesProfesorPerfil">Valoración media: </string>
     <string name="votarProfesorPerfil">Valoración </string>
+    <string name="action_valorar_prof">Enviar valoración</string>
     <string name="action_addfav_prof">Añadir a profesores favoritos</string>
 
 
