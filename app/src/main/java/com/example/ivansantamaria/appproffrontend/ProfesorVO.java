@@ -36,7 +36,6 @@ public class ProfesorVO {
     public String getNombreUsuario() {
         return nombreUsuario;
     }
-
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
@@ -44,7 +43,6 @@ public class ProfesorVO {
     public String getTelefono() {
         return telefono;
     }
-
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
@@ -52,7 +50,6 @@ public class ProfesorVO {
     public String getMail() {
         return mail;
     }
-
     public void setMail(String mail) {
         this.mail = mail;
     }
@@ -60,7 +57,6 @@ public class ProfesorVO {
     public String getCiudad() {
         return ciudad;
     }
-
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
@@ -68,7 +64,6 @@ public class ProfesorVO {
     public ArrayList<String> getHorarios() {
         return horarios;
     }
-
     public void setHorarios(ArrayList<String> horarios) {
         this.horarios = horarios;
     }
@@ -76,7 +71,6 @@ public class ProfesorVO {
     public ArrayList<String> getCursos() {
         return cursos;
     }
-
     public void setCursos(ArrayList<String> cursos) {
         this.cursos = cursos;
     }
@@ -84,7 +78,6 @@ public class ProfesorVO {
     public ArrayList<String> getAsignaturas() {
         return asignaturas;
     }
-
     public void setAsignaturas(ArrayList<String> asignaturas) {
         this.asignaturas = asignaturas;
     }
@@ -92,7 +85,6 @@ public class ProfesorVO {
     public Float getValoracion() {
         return valoracion;
     }
-
     public void setValoracion(Float valoracion) {
         this.valoracion = valoracion;
     }
@@ -100,7 +92,6 @@ public class ProfesorVO {
     public String getExperiencia() {
         return experiencia;
     }
-
     public void setExperiencia(String experiencia) {
         this.experiencia = experiencia;
     }
@@ -108,7 +99,6 @@ public class ProfesorVO {
     public String getModalidad() {
         return modalidad;
     }
-
     public void setModalidad(String modalidad) {
         this.modalidad = modalidad;
     }

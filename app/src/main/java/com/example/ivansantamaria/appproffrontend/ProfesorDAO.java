@@ -12,8 +12,8 @@ public class ProfesorDAO {
                 new ArrayList<String>() {{ add("Lunes Mañana"); add("Lunes Tarde");}},
                 new ArrayList<String>() {{ add("Primaria"); add("Secundaria");}},
                 new ArrayList<String>() {{ add("Matemáticas"); add("Ingles");}},
-                5.0f,"250 años en la enseñanza obligatoria con un descanso de 12 años para ser " +
-                "profesor particular de matemática discreta","presencial");
+                4.4f,"250 años en la enseñanza obligatoria con un descanso de 12 años para ser " +
+                "profesor particular de matemática discreta","Presencial");
 
         return profe;
     }
