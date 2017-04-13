@@ -12,9 +12,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Ver_Profesor extends AppCompatActivity {
 
     private TextView user;
@@ -22,7 +19,7 @@ public class Ver_Profesor extends AppCompatActivity {
     private TextView experiencia;
     private Spinner asignaturas;
     private Spinner cursos;
-    private Spinner horario;
+    private Spinner horarios;
     private TextView email;
     private TextView telefono;
     private TextView modalidad;
@@ -36,11 +33,17 @@ public class Ver_Profesor extends AppCompatActivity {
     // Falta ListenerOnButton para anyadir profesor a favoritos
     private Button btnAnyadirProfesorFav;
 
+    // Profesor de prueba para poblar los distintos campos
+    private Facade facade = null;
+    private ProfesorVO profesor = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_profesor);
 
+        facade = new Facade();
+        profesor = facade.perfilProfesor(" Isak");
         populateFields();
 
         // Listeners barra de Rating y botón de enviar la valoración
@@ -122,17 +125,48 @@ public class Ver_Profesor extends AppCompatActivity {
      */
     private void populateAsignaturasSpinner() {
 
-        List<String> spinnerArray =  new ArrayList<String>();
-        spinnerArray.add("Sistemas II");
-        spinnerArray.add("FAE");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, spinnerArray);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        asignaturas = (Spinner) findViewById(R.id.asignaturasProfesorPerfil);
-        asignaturas.setAdapter(adapter);
+        if(profesor.getAsignaturas() != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    this, R.layout.row_spinner, profesor.getAsignaturas());
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            asignaturas = (Spinner) findViewById(R.id.asignaturasProfesorPerfil);
+            asignaturas.setAdapter(adapter);
+        }
 
     }
+
+    /*
+     * Método para poblar el Spinner de cursos a los que imparte el profesor en cuestión
+     *
+     */
+    private void populateCursosSpinner() {
+
+        if(profesor.getCursos() != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this, R.layout.row_spinner, profesor.getCursos());
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            cursos = (Spinner) findViewById(R.id.cursosProfesorPerfil);
+            cursos.setAdapter(adapter);
+        }
+
+    }
+
+    /*
+     * Método para poblar el Spinner de horarios a los que imparte el profesor en cuestión
+     *
+     */
+    private void populateHorariosSpinner() {
+
+        if(profesor.getCursos() != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this, R.layout.row_spinner, profesor.getHorarios());
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            horarios = (Spinner) findViewById(R.id.horarioProfesorPerfil);
+            horarios.setAdapter(adapter);
+        }
+
+    }
+
 
     /*
     * Método para poblar todos los campos del perfil del profesor en cuestión
@@ -142,32 +176,32 @@ public class Ver_Profesor extends AppCompatActivity {
 
         // TODO: acceso a la base de datos en función del profesor que el usuario selecciona
         user = (TextView) findViewById(R.id.nombreProfesorPerfil);
-        user.setText(" Luis Fueris");
+        user.setText(profesor.getNombreUsuario());
 
         ciudad = (TextView) findViewById(R.id.ciudadProfesorPerfil);
-        ciudad.setText(" Kuala Lumpur (Malasia)");
+        ciudad.setText(profesor.getCiudad());
 
         experiencia = (TextView) findViewById(R.id.experienciaProfesorPerfil);
-        experiencia.setText(" matemáticas y física");
+        experiencia.setText(profesor.getExperiencia());
 
         // Llamada a los métodos para poblar los distintos Spinners. Solo está el de asignaturas.
         populateAsignaturasSpinner();
-        //populateCursosSpinner();
-        //pupulateHorariosSpinner();
+        populateCursosSpinner();
+        populateHorariosSpinner();
 
-        /*final HashCode hashCode = Hashing.sha1().hashString("luis", Charset.defaultCharset());
+        //final HashCode hashCode = Hashing.sha1().hashString("luis", Charset.defaultCharset());
 
         email = (TextView) findViewById(R.id.emailProfesorPerfil);
-        email.setText(hashCode.toString())*/
+        email.setText(profesor.getMail());
 
         telefono = (TextView) findViewById(R.id.tlfnoProfesorPerfil);
-        telefono.setText(" 656626425");
+        telefono.setText(profesor.getTelefono());
 
         modalidad = (TextView) findViewById(R.id.modalidadProfesorPerfil);
-        modalidad.setText(" on-line");
+        modalidad.setText(profesor.getModalidad());
 
         valoracionMedia = (TextView) findViewById(R.id.valoracionesProfesorPerfil);
-        valoracionMedia.setText(" 4,75");
+        valoracionMedia.setText(profesor.getValoracion().toString());
 
     }
 
