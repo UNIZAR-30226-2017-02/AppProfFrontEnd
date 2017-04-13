@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class ProfesorVO {
 
     private String nombreUsuario = null;
+    private String password = null;
     private String telefono = null;
     private String mail = null;
     private String ciudad = null;
@@ -15,12 +16,13 @@ public class ProfesorVO {
     private String experiencia = null;
     private String modalidad = null;
 
-    public ProfesorVO (String nombreUsuario, String telefono, String mail, String ciudad,
+    public ProfesorVO (String nombreUsuario, String password, String telefono, String mail, String ciudad,
                        ArrayList<String> horarios, ArrayList<String> cursos,
                        ArrayList<String> asignaturas, Float valoracion, String experiencia,
                        String modalidad) {
 
         if (nombreUsuario != null) this.nombreUsuario = nombreUsuario;
+        if (password != null) this.password = password;
         if (telefono != null) this.telefono = telefono;
         if (mail != null) this.mail = mail;
         if (ciudad != null) this.ciudad = ciudad;
@@ -38,6 +40,15 @@ public class ProfesorVO {
     }
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getTelefono() {
