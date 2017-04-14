@@ -1,15 +1,19 @@
 package com.example.ivansantamaria.appproffrontend;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.AppCompatSpinner;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MultiSpinner extends AppCompatSpinner implements
+/**
+ * Created by isak on 14/04/17.
+ */
+
+public class MultiSpinner extends android.support.v7.widget.AppCompatSpinner implements
         DialogInterface.OnMultiChoiceClickListener, DialogInterface.OnCancelListener {
 
     private List<String> items;
@@ -83,24 +87,51 @@ public class MultiSpinner extends AppCompatSpinner implements
         return true;
     }
 
-    public void setItems(List<String> items, String allText,
-                         MultiSpinnerListener listener) {
+    public void setItems(
+            List<String> items,
+            List<String> itemValues,
+            List <String> selectedList,
+            String allText,
+            MultiSpinnerListener listener) {
         this.items = items;
         this.defaultText = allText;
         this.listener = listener;
 
-        // all selected by default
-        selected = new boolean[items.size()];
-        for (int i = 0; i < selected.length; i++)
-            selected[i] = true;
+        String spinnerText = allText;
 
-        // all text on the spinner
+        // Set false by default
+        selected = new boolean[itemValues.size()];
+        for (int j = 0; j < itemValues.size(); j++)
+            selected[j] = false;
+
+        if (selectedList != null) {
+
+            // Set selected items to true
+            for (String selectedItem : selectedList)
+                for (int j = 0; j < itemValues.size(); j++)
+                    if (selectedItem.trim().equals(itemValues.get(j))) {
+                        selected[j] = true;
+                        spinnerText += (spinnerText.equals("")?"":", ") + items.get(j);
+                        break;
+                    }
+        }
+
+        // Text for the spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, new String[] { allText });
+                android.R.layout.simple_spinner_item, new String[] { spinnerText });
         setAdapter(adapter);
     }
 
     public interface MultiSpinnerListener {
         public void onItemsSelected(boolean[] selected);
+    }
+
+    public ArrayList<String> getValues() {
+        ArrayList<String> resultado = new ArrayList<>();
+        for(int i = 0; i < items.size(); i++) {
+            if(selected[i])
+                resultado.add(items.get(i));
+        }
+        return resultado;
     }
 }

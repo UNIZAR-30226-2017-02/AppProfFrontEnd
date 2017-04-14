@@ -39,14 +39,14 @@ public class Perfil_Profesor extends AppCompatActivity {
         modificarButton = (Button) findViewById(R.id.modifyProfesor);
         pagarButton = (Button) findViewById(R.id.pagarProfesor);
 
-        /*
+
         modificarButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                Intent i = new Intent(local, Pagar_Profesor.class);
+                Intent i = new Intent(local, Modificar_Perfil_1.class);
                 startActivityForResult(i, 0);
             }
-        });*/
+        });
 
         pagarButton.setOnClickListener(new View.OnClickListener() {
 

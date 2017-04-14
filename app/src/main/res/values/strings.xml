@@ -66,6 +66,8 @@
     <string name="condiciones">Mediante el pago de 5$ se permite a los profesores la promoción de su anuncio, es decir, cuando un alumno realice una búsqueda cuyas condiciones satisfagan a su perfil este aparecerá en las primeras posiciones del resultado. </string>
 
     <string name="no_profesores">No se han encontrado resultados para la búsqueda</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="confirmar">Confirmar</string>
 
     <string-array name="favoritos_array">
         <item>Fernando García Vallés</item>
