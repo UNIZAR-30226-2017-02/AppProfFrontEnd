@@ -28,7 +28,7 @@ public class Registro1 extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        profesor.setOnClickListener(new View.OnClickListener() {
+        alumno.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 i.putExtra("persona", 0);
                 startActivity(i);

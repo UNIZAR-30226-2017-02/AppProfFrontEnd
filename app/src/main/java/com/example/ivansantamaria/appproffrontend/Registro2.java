@@ -27,30 +27,29 @@ public class Registro2 extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         prof = getIntent().getExtras().getInt("persona");
+        if (prof == 1) setContentView(R.layout.activity_registro2_profesor);
+        else setContentView(R.layout.activity_registro2_alumno);
         username = (EditText) findViewById(R.id.userName);
         password = (EditText) findViewById(R.id.password);
         confirmPassword = (EditText) findViewById(R.id.confirm);
-        ;
         if (prof == 1) {
             email = (EditText) findViewById(R.id.email);
             tlf = (EditText) findViewById(R.id.telefono);
-            setContentView(R.layout.activity_registro2_profesor);
             Button siguiente = (Button) findViewById(R.id.siguiente);
             final Intent i = new Intent(this, Registro3.class);
-            final int code = guardarEnBd(prof);
             siguiente.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
+                    final int code = guardarEnBd(prof);
                     if (code == -1) startActivity(i);
                     else error(code);
                 }
             });
         } else {
-            setContentView(R.layout.activity_registro2_alumno);
             Button registro = (Button) findViewById(R.id.register);
             final Intent i = new Intent(this, Busqueda_Profesores.class);
-            final int code = guardarEnBd(prof);
             registro.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
+                    final int code = guardarEnBd(prof);
                     if (code == -1) startActivity(i);
                     else error(code);
                 }
@@ -62,23 +61,23 @@ public class Registro2 extends AppCompatActivity {
         String usr = username.getText().toString();
         String psw = password.getText().toString();
         String cpsw = confirmPassword.getText().toString();
-        if (usr == "") return 0;
-        else if (psw == "") return 1;
-        else if (cpsw == "") return 2;
-        else if (cpsw != psw) return 3;
+        if (usr.isEmpty()) return 0;
+        else if (psw.isEmpty()) return 1;
+        else if (cpsw.isEmpty()) return 2;
+        else if (!cpsw.equals(psw)) return 3;
         if (prof == 1) {
             String mail = email.getText().toString();
             String phone = tlf.getText().toString();
-            if (mail == "") return 4;
+            if (mail.isEmpty()) return 4;
             else if (!mail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+")) return 5;
-            else if (phone == "") return 6;
-            else if (!phone.matches("(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}")) return 7;
+            else if (phone.isEmpty()) return 6;
+            else if (!phone.matches("(\\+34|0034|34|)?[ -]*(6|7)[ -]*([0-9][ -]*){8}")) return 7;
             //Guardar en base de datos
             return -1;
         } else {
             //Guardar en base de datos
             CheckBox tyc = (CheckBox) findViewById(R.id.TyC);
-            if (!tyc.hasSelection()) return 8;
+            if (!tyc.isEnabled()) return 8;
             return -1;
         }
     }

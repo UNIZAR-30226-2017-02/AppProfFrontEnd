@@ -24,16 +24,16 @@ public class Registro3 extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_registro3_profesor);
         horario = (MultiSpinner) findViewById(R.id.horarioProfesor);
         asignaturas = (MultiSpinner) findViewById(R.id.asigProfesor);
         curso = (Spinner) findViewById(R.id.spinner5);
         modo = (Spinner) findViewById(R.id.spinner6);
-        setContentView(R.layout.activity_registro3_profesor);
         Button registro = (Button) findViewById(R.id.registerbutton);
         final Intent i = new Intent(this, Perfil_Profesor.class);
-        final int code = guardarEnBd();
         registro.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                final int code = guardarEnBd();
                 if (code == -1) startActivity(i);
                 else error(code);
             }
@@ -44,7 +44,7 @@ public class Registro3 extends AppCompatActivity {
         //Comprobar campos
         //Guardar en base de datos
         CheckBox tyc = (CheckBox) findViewById(R.id.TyC);
-        if (!tyc.hasSelection()) return 8;
+        if (!tyc.isEnabled()) return 8;
         return -1;
     }
 
