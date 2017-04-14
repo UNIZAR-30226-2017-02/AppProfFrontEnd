@@ -81,7 +81,11 @@
                     android:text="@string/horarioProfesorBusqueda"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <cz.destil.settleup.gui.MultiSpinner android:id="@+id/horarioProfesorBusqueda" />
+                <Spinner
+                    android:id="@+id/horariosProfesorBusqueda"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"/>
 
             </LinearLayout>
 
@@ -94,7 +98,11 @@
                     android:text="@string/asignaturasProfesorBusqueda"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <cz.destil.settleup.gui.MultiSpinner android:id="@+id/asignaturasProfesorBusqueda" />
+                <Spinner
+                android:id="@+id/asignaturasProfesorBusqueda"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"/>
 
             </LinearLayout>
 
@@ -108,7 +116,11 @@
                     android:text="@string/cursosProfesorBusqueda"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <cz.destil.settleup.gui.MultiSpinner android:id="@+id/cursoProfesorBusqueda" />
+                <Spinner
+                    android:id="@+id/cursoProfesorBusqueda"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"/>
 
             </LinearLayout>
 
