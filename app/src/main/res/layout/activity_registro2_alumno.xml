@@ -9,31 +9,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nombre de usuario"
-        android:inputType="textPersonName"
-        android:fontFamily="sans-serif-medium"/>
+        android:fontFamily="sans-serif-medium"
+        android:hint="Nombre de usuario*"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:fontFamily="sans-serif-medium"/>
+        android:fontFamily="sans-serif-medium"
+        android:hint="Contraseña*"
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Confirmar contraseña"
-        android:inputType="textPassword"
-        android:fontFamily="sans-serif-medium"/>
+        android:fontFamily="sans-serif-medium"
+        android:hint="Confirmar contraseña*"
+        android:inputType="textPassword" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="58dp"
         android:orientation="horizontal">
 
         <CheckBox
@@ -44,12 +45,17 @@
             android:checked="false"
             android:duplicateParentState="false"
             android:fontFamily="sans-serif-medium"
-            android:text="He leido y acepto los terminos y condiciones" />
+            android:text="He leido y acepto los terminos y condiciones*" />
 
         <Button
-            android:id="@+id/confirmar"
+            android:id="@+id/register"
             android:layout_width="134dp"
             android:layout_height="wrap_content"
-            android:text="Confirmar" />
+            android:text="Registrarse" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="*Obligatorio" />
 </LinearLayout>

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nombre de usuario"
+        android:hint="Nombre de usuario*"
         android:inputType="textPersonName" />
 
     <EditText
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Contraseña"
+        android:hint="Contraseña*"
         android:inputType="textPassword" />
 
     <EditText
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Confirmar contraseña"
+        android:hint="Confirmar contraseña*"
         android:inputType="textPassword" />
 
     <EditText
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Correo electrónico"
+        android:hint="Correo electrónico*"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -42,104 +42,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Teléfono de contacto"
+        android:hint="Teléfono de contacto*"
         android:inputType="phone" />
 
-    <TextView
-        android:id="@+id/horario"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/siguiente"
+        android:layout_width="134dp"
         android:layout_height="wrap_content"
-        android:text="Horarios"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
-
-    <cz.destil.settleup.gui.MultiSpinner android:id="@+id/horarioProfesor" />
-
+        android:text="Siguiente" />
     <TextView
-        android:id="@+id/asignatura"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Asignaturas"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:layout_height="match_parent"
+        android:text="*Obligatorio" />
 
-    <cz.destil.settleup.gui.MultiSpinner android:id="@+id/asigProfesor" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/curso"
-            android:layout_width="163dp"
-            android:layout_height="wrap_content"
-            android:text="Curso"
-            android:textSize="18sp"
-            android:textStyle="normal|bold" />
-
-        <Spinner
-            android:id="@+id/spinner5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
-    <LinearLayout android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/experienciaProfesor"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="20sp"/>
-        <EditText android:id="@+id/experienciaProfesor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="20sp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/modo"
-            android:layout_width="163dp"
-            android:layout_height="wrap_content"
-            android:text="Modalidad"
-            android:textSize="18sp"
-            android:textStyle="normal|bold" />
-
-        <Spinner
-            android:id="@+id/spinner6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="114dp"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/TyC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="false"
-            android:duplicateParentState="false"
-            android:text="He leido y acepto los terminos y condiciones" />
-
-        <Button
-            android:id="@+id/confirmar"
-            android:layout_width="134dp"
-            android:layout_height="wrap_content"
-            android:text="Confirmar" />
-    </LinearLayout>
 
 </LinearLayout>
