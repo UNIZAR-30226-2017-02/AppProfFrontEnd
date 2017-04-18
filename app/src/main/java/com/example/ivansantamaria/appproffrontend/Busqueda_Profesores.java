@@ -13,13 +13,13 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-public class Busqueda_Profesores extends AppCompatActivity {
+public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinner.MultiSpinnerListener {
 
     //private String nombreUsuario;
 
     private EditText nombre;
     private EditText ciudad;
-    private Spinner horarios;
+    private MultiSpinner horarios;
     private Spinner asignaturas;
     private Spinner cursos;
 
@@ -30,9 +30,6 @@ public class Busqueda_Profesores extends AppCompatActivity {
     private static final int ACTIVITY_LISTAR_BUSQUEDA=0;
     /** identificador para la actividad de listar profesores favoritos */
     private static final int ACTIVITY_LISTAR_FAVORITOS=1;
-
-    private static final ArrayList<String> horariosList = new ArrayList<String>()
-    {{ add("---"); add("Mañanas"); add("Tardes");}};
 
     private static final ArrayList<String> asignaturasList = new ArrayList<String>()
     {{ add("---"); add("Matematicas"); add("Fisica"); add("Ingles"); add("Frances"); add("Biologia");}};
@@ -60,7 +57,7 @@ public class Busqueda_Profesores extends AppCompatActivity {
             public void onClick(View view) {
                 if(nombre.getText().toString().equals("") &&
                         ciudad.getText().toString().equals("") &&
-                        horarios.getSelectedItemPosition() == 0 &&
+                        horarios.getValues().equals("") &&
                         asignaturas.getSelectedItemPosition() == 0 &&
                         cursos.getSelectedItemPosition() == 0)
                 {
@@ -94,14 +91,15 @@ public class Busqueda_Profesores extends AppCompatActivity {
     }
 
     private void populatefields(){
+        Facade facade = new Facade();
         nombre = (EditText) findViewById(R.id.usuarioProfesorBusqueda);
         ciudad = (EditText) findViewById(R.id.ciudadProfesorBusqueda);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this, R.layout.row_spinner, horariosList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        horarios = (Spinner) findViewById(R.id.horariosProfesorBusqueda);
-        horarios.setAdapter(adapter);
+        horarios = (MultiSpinner) findViewById(R.id.horariosProfesorBusqueda);
+        horarios.setItems(facade.getHorariosDisponibles(),facade.getHorariosDisponibles(),
+                null,"", this);
+
+        ArrayAdapter<String> adapter;
 
         adapter = new ArrayAdapter<>(
                 this, R.layout.row_spinner, asignaturasList);
@@ -127,12 +125,17 @@ public class Busqueda_Profesores extends AppCompatActivity {
         //i.putExtra("nombreUsuario", nombreUsuario);
         i.putExtra("nombre", nombre.getText().toString());
         i.putExtra("ciudad", ciudad.getText().toString());
-        String horario = horariosList.get(horarios.getSelectedItemPosition());
+        ArrayList<String> horario = horarios.getValues();
         i.putExtra("horario", horario);
         String asignatura = asignaturasList.get(asignaturas.getSelectedItemPosition());
         i.putExtra("asignatura", asignatura);
         String curso = cursosList.get(cursos.getSelectedItemPosition());
         i.putExtra("curso", curso);
         startActivityForResult(i, ACTIVITY_LISTAR_BUSQUEDA);
+    }
+
+    @Override
+    public void onItemsSelected(boolean[] selected) {
+
     }
 }

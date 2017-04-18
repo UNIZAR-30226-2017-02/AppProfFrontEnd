@@ -18,7 +18,7 @@ public class Listar_Profesores extends AppCompatActivity {
 
     private String nombre;
     private String ciudad;
-    private String horario;
+    private ArrayList<String> horario;
     private String asignatura;
     private String curso;
 
@@ -43,7 +43,7 @@ public class Listar_Profesores extends AppCompatActivity {
         nombre = (extras != null) ? extras.getString("nombre") : null;
         ciudad = (extras != null) ? extras.getString("ciudad") : null;
         // Horario, asignatura y curso si no han sido rellenados -> "---"
-        horario = (extras != null) ? extras.getString("horario") : null;
+        horario = (extras != null) ? extras.getStringArrayList("horario") : null;
         asignatura = (extras != null) ? extras.getString("asignatura") : null;
         curso = (extras != null) ? extras.getString("curso") : null;
 

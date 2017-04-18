@@ -81,7 +81,7 @@
                     android:text="@string/horarioProfesorBusqueda"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <Spinner
+                <com.example.ivansantamaria.appproffrontend.MultiSpinner
                     android:id="@+id/horariosProfesorBusqueda"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
