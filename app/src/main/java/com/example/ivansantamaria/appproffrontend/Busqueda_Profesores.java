@@ -20,8 +20,8 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
     private EditText nombre;
     private EditText ciudad;
     private MultiSpinner horarios;
-    private Spinner asignaturas;
-    private Spinner cursos;
+    private MultiSpinner asignaturas;
+    private MultiSpinner cursos;
 
     private Button buscarProfesor = null;
     private Button favoritoProfesor = null;
@@ -30,12 +30,6 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
     private static final int ACTIVITY_LISTAR_BUSQUEDA=0;
     /** identificador para la actividad de listar profesores favoritos */
     private static final int ACTIVITY_LISTAR_FAVORITOS=1;
-
-    private static final ArrayList<String> asignaturasList = new ArrayList<String>()
-    {{ add("---"); add("Matematicas"); add("Fisica"); add("Ingles"); add("Frances"); add("Biologia");}};
-
-    private static final ArrayList<String> cursosList = new ArrayList<String>()
-    {{ add("---"); add("Primaria"); add("Secundaria"); add("Bachillerato"); add("Universidad");}};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +52,8 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
                 if(nombre.getText().toString().equals("") &&
                         ciudad.getText().toString().equals("") &&
                         horarios.getValues().equals("") &&
-                        asignaturas.getSelectedItemPosition() == 0 &&
-                        cursos.getSelectedItemPosition() == 0)
+                        asignaturas.getValues().equals("") &&
+                        cursos.getValues().equals(""))
                 {
                     AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(local);
 
@@ -99,19 +93,13 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
         horarios.setItems(facade.getHorariosDisponibles(),facade.getHorariosDisponibles(),
                 null,"", this);
 
-        ArrayAdapter<String> adapter;
+        asignaturas = (MultiSpinner) findViewById(R.id.asignaturasProfesorBusqueda);
+        asignaturas.setItems(facade.getAsignaturasDisponibles(),facade.getAsignaturasDisponibles(),
+                null,"", this);
 
-        adapter = new ArrayAdapter<>(
-                this, R.layout.row_spinner, asignaturasList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        asignaturas = (Spinner) findViewById(R.id.asignaturasProfesorBusqueda);
-        asignaturas.setAdapter(adapter);
-
-        adapter = new ArrayAdapter<>(
-                this, R.layout.row_spinner, cursosList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cursos = (Spinner) findViewById(R.id.cursoProfesorBusqueda);
-        cursos.setAdapter(adapter);
+        cursos = (MultiSpinner) findViewById(R.id.cursosProfesorBusqueda);
+        cursos.setItems(facade.getCursosDisponibles(),facade.getCursosDisponibles(),
+                null,"", this);
     }
 
     private void listar_favoritos(){
@@ -127,9 +115,9 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
         i.putExtra("ciudad", ciudad.getText().toString());
         ArrayList<String> horario = horarios.getValues();
         i.putExtra("horario", horario);
-        String asignatura = asignaturasList.get(asignaturas.getSelectedItemPosition());
+        ArrayList<String> asignatura = asignaturas.getValues();
         i.putExtra("asignatura", asignatura);
-        String curso = cursosList.get(cursos.getSelectedItemPosition());
+        ArrayList<String> curso = cursos.getValues();
         i.putExtra("curso", curso);
         startActivityForResult(i, ACTIVITY_LISTAR_BUSQUEDA);
     }

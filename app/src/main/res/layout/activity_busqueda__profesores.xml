@@ -98,11 +98,11 @@
                     android:text="@string/asignaturasProfesorBusqueda"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <Spinner
-                android:id="@+id/asignaturasProfesorBusqueda"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"/>
+                <com.example.ivansantamaria.appproffrontend.MultiSpinner
+                    android:id="@+id/asignaturasProfesorBusqueda"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"/>
 
             </LinearLayout>
 
@@ -116,8 +116,8 @@
                     android:text="@string/cursosProfesorBusqueda"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="20sp"/>
-                <Spinner
-                    android:id="@+id/cursoProfesorBusqueda"
+                <com.example.ivansantamaria.appproffrontend.MultiSpinner
+                    android:id="@+id/cursosProfesorBusqueda"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10sp"/>
