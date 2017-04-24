@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+
 
 public class Ver_Profesor extends AppCompatActivity {
 
@@ -61,8 +63,8 @@ public class Ver_Profesor extends AppCompatActivity {
 
     public void pruebaMongo() {
 
-        MongoClient mongoClient = new MongoClient( "localhost" ,8080 );
-
+        MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:8080");
+        MongoClient mongoClient = new MongoClient(connectionString);
 
     }
 
