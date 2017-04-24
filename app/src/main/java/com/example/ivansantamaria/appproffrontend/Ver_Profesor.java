@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mongodb.MongoClient;
+
 public class Ver_Profesor extends AppCompatActivity {
 
     private TextView user;
@@ -46,11 +48,21 @@ public class Ver_Profesor extends AppCompatActivity {
         profesor = facade.perfilProfesor(" Isak");
         populateFields();
 
+        // Prueba mongo
+        pruebaMongo();
+
         // Listeners barra de Rating y botón de enviar la valoración
         addListenerOnRatingBar();
         addListenerOnButtonValoracion();
         // Listener botón de profesor favorito
         addListenerOnButtonProfFavorito();
+
+    }
+
+    public void pruebaMongo() {
+
+        MongoClient mongoClient = new MongoClient( "localhost" ,8080 );
+
 
     }
 
