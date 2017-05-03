@@ -26,7 +26,7 @@ public class API
 	{
 		this.baseurl = _baseurl;
 
-		this.token = "5"; // Cargar el token del almacenamiento si existía
+		//this.token = null; // Cargar el token del almacenamiento si existía
 	}
 
 	/*
@@ -47,7 +47,7 @@ public class API
 
 		connection.connect();
 
-		InputStream inputStream = connection.getInputStream();
+		InputStream inputStream = url.openStream();
 		BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
 
 		StringBuilder sb = new StringBuilder();
@@ -63,18 +63,24 @@ public class API
 
 	private String postStringJson (String _url, String body) throws Exception
 	{
+		int nbytes = body.getBytes("UTF-8").length;
 		URL url = new URL(this.baseurl + _url);
-		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-		connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-		connection.setRequestMethod("POST");
-		connection.setDoInput(true);
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		//connection.setRequestMethod("POST");
+		((HttpURLConnection)url.openConnection()).setRequestMethod("POST");
+		connection.setRequestProperty("Content-Type", "application/json");
+		connection.setRequestProperty( "Content-Length", Integer.toString(nbytes));
 		connection.setDoOutput(true);
+		connection.setUseCaches(false);
+
+		connection.connect();
 
 		OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
 	    writer.write(body);
 	    writer.close();
 
-	    InputStream inputStream = connection.getInputStream();
+		//getErrorStream() .getResponseCode()
+	    InputStream inputStream = url.openStream();
 		BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
 
 		StringBuilder sb = new StringBuilder();
