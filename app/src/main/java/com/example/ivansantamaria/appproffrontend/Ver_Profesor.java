@@ -12,8 +12,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import org.json.JSONObject;
+
+import static java.lang.System.exit;
 
 
 public class Ver_Profesor extends AppCompatActivity {
@@ -63,9 +64,16 @@ public class Ver_Profesor extends AppCompatActivity {
 
     public void pruebaMongo() {
 
-        MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:8080");
-        MongoClient mongoClient = new MongoClient(connectionString);
-
+        API api = new API("http://10.0.2.2:8080");
+        String peticion = "{\n \"userName\" : \"hola\" \n}";
+        try {
+            JSONObject o = api.post("/api/login",peticion);
+            System.out.println(o.toString());
+        } catch(Exception e) {
+            System.out.println("Salida");
+            System.out.println(e);
+            exit(1);
+        }
     }
 
     /*
