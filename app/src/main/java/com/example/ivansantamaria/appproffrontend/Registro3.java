@@ -1,16 +1,24 @@
 package com.example.ivansantamaria.appproffrontend;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Spinner;
 
 /**
  * Created by Rubenbros on 14/04/2017.
  */
 
 public class Registro3 extends AppCompatActivity {
-/*
+
     private MultiSpinner horario;
     private MultiSpinner asignaturas;
-    private Spinner curso;
+    private MultiSpinner curso;
     private Spinner modo;
 
     @Override
@@ -19,8 +27,8 @@ public class Registro3 extends AppCompatActivity {
         setContentView(R.layout.activity_registro3_profesor);
         horario = (MultiSpinner) findViewById(R.id.horarioProfesor);
         asignaturas = (MultiSpinner) findViewById(R.id.asigProfesor);
-        curso = (Spinner) findViewById(R.id.spinner5);
-        modo = (Spinner) findViewById(R.id.spinner6);
+        curso = (MultiSpinner) findViewById(R.id.cursoProfesorReg);
+        modo = (Spinner) findViewById(R.id.modalidadProfesorReg);
         Button registro = (Button) findViewById(R.id.registerbutton);
         final Intent i = new Intent(this, Perfil_Profesor.class);
         registro.setOnClickListener(new View.OnClickListener() {
@@ -56,5 +64,5 @@ public class Registro3 extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 });
-    }*/
+    }
 }

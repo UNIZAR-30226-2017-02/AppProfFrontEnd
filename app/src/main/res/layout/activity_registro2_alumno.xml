@@ -31,16 +31,24 @@
         android:hint="Confirmar contraseña*"
         android:inputType="textPassword" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*Obligatorio" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
         android:orientation="horizontal">
+
 
         <CheckBox
             android:id="@+id/TyC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_weight="1"
             android:checked="false"
             android:duplicateParentState="false"
@@ -51,11 +59,8 @@
             android:id="@+id/register"
             android:layout_width="134dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:text="Registrarse" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="*Obligatorio" />
 </LinearLayout>

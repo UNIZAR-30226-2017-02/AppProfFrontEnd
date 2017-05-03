@@ -19,6 +19,8 @@ public class Registro2 extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private EditText confirmPassword;
+    private EditText ciudad;
+    private EditText experiencia;
     private EditText email;
     private EditText tlf;
     private int prof;
@@ -35,6 +37,8 @@ public class Registro2 extends AppCompatActivity {
         if (prof == 1) {
             email = (EditText) findViewById(R.id.email);
             tlf = (EditText) findViewById(R.id.telefono);
+            ciudad = (EditText) findViewById(R.id.ciudadProfesorReg);
+            experiencia = (EditText) findViewById(R.id.experienciaProfesorReg);
             Button siguiente = (Button) findViewById(R.id.siguiente);
             final Intent i = new Intent(this, Registro3.class);
             siguiente.setOnClickListener(new View.OnClickListener() {
@@ -68,10 +72,13 @@ public class Registro2 extends AppCompatActivity {
         if (prof == 1) {
             String mail = email.getText().toString();
             String phone = tlf.getText().toString();
+            String city = ciudad.getText().toString();
+            String experience = experiencia.getText().toString();
             if (mail.isEmpty()) return 4;
             else if (!mail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+")) return 5;
             else if (phone.isEmpty()) return 6;
             else if (!phone.matches("(\\+34|0034|34|)?[ -]*(6|7)[ -]*([0-9][ -]*){8}")) return 7;
+            else if (city.isEmpty()) return 9;
             //Guardar en base de datos
             return -1;
         } else {
@@ -104,13 +111,16 @@ public class Registro2 extends AppCompatActivity {
                 dlgAlert.setMessage("Introduzca un e-mail valido");
                 break;
             case 6:
-                dlgAlert.setMessage("Relene el campo de telefono");
+                dlgAlert.setMessage("Rellene el campo de telefono");
                 break;
             case 7:
                 dlgAlert.setMessage("Introduzca un telefono valido");
                 break;
             case 8:
                 dlgAlert.setMessage("Acepte los terminos y condiciones");
+                break;
+            case 9:
+                dlgAlert.setMessage("Rellene el campo de Ciudad");
         }
         dlgAlert.setTitle("Error...");
         dlgAlert.setPositiveButton("OK", null);
