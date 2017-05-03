@@ -25,8 +25,8 @@ public class Registro3 extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro3_profesor);
-        horario = (MultiSpinner) findViewById(R.id.horarioProfesor);
-        asignaturas = (MultiSpinner) findViewById(R.id.asigProfesor);
+        horario = (MultiSpinner) findViewById(R.id.horariosProfesorReg);
+        asignaturas = (MultiSpinner) findViewById(R.id.asignaturasProfesorReg);
         curso = (MultiSpinner) findViewById(R.id.cursoProfesorReg);
         modo = (Spinner) findViewById(R.id.modalidadProfesorReg);
         Button registro = (Button) findViewById(R.id.registerbutton);

@@ -25,7 +25,7 @@
         android:textStyle="normal|bold" />
 
     <com.example.ivansantamaria.appproffrontend.MultiSpinner
-        android:id="@+id/AsignaturasProfesorReg"
+        android:id="@+id/asignaturasProfesorReg"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp" />
