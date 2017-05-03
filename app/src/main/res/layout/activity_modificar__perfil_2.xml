@@ -20,44 +20,47 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout android:orientation="horizontal"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Campos no obligatorios"
                     android:fontFamily="sans-serif-medium"
+                    android:text="Campos no obligatorios"
                     android:textSize="24sp" />
             </LinearLayout>
 
-            <LinearLayout android:orientation="horizontal"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/usarioProfesor"
                     android:fontFamily="sans-serif-medium"
+                    android:text="@string/usarioProfesor"
                     android:textSize="20sp"/>
                 <TextView android:id="@+id/usuarioProfesorMod"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10sp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="10sp"/>
+                    android:textSize="20sp" />
             </LinearLayout>
 
-            <LinearLayout android:orientation="vertical"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cursosProfesor"
                     android:fontFamily="sans-serif-medium"
+                    android:text="@string/cursosProfesor"
                     android:textSize="20sp"/>
 
                 <com.example.ivansantamaria.appproffrontend.MultiSpinner
@@ -67,14 +70,15 @@
                     android:layout_marginLeft="10sp"/>
             </LinearLayout>
 
-            <LinearLayout android:orientation="vertical"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cursosProfesor"
                     android:fontFamily="sans-serif-medium"
+                    android:text="@string/modalidadProfesor"
                     android:textSize="20sp"/>
 
                 <Spinner
@@ -84,27 +88,29 @@
                     android:layout_marginLeft="10sp"/>
             </LinearLayout>
 
-            <LinearLayout android:orientation="vertical"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/experienciaProfesor"
                     android:fontFamily="sans-serif-medium"
+                    android:text="@string/experienciaProfesor"
                     android:textSize="20sp"/>
                 <EditText android:id="@+id/experienciaProfesorMod"
                     android:layout_width="match_parent"
                     android:layout_height="250sp"
+                    android:layout_marginLeft="10sp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="10sp"/>
+                    android:textSize="20sp" />
             </LinearLayout>
 
-            <LinearLayout android:orientation="vertical"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/confirmarMod"
