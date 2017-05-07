@@ -24,6 +24,7 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
     private MultiSpinner curso;
     private Spinner modo;
     private Facade facade = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,8 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
                 else error(code);
             }
         });
+
+
     }
 
     private int guardarEnBd() {

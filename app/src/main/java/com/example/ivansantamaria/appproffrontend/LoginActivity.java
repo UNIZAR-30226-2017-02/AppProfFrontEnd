@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +31,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +45,9 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    // Instancia la api una vez en la clase
+    API api;
+
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
@@ -49,6 +57,22 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedpref = getPreferences(MODE_PRIVATE);
+        int tipo = sharedpref.getInt("tipo", -1);
+
+        if (tipo != -1)
+        {
+            Intent i = (tipo == 0) ? new Intent(this, Busqueda_Profesores.class) : new Intent(this, Perfil_Profesor.class);
+            startActivity(i);
+        }
+
+        /*
+         * Para cerrar sesión, hacer logout a /api/logout y posteriormente
+         * borrar las preferencias => sharedpref.edit().remove("tipo").remove("token").apply();
+         *
+         */
+
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.login);
@@ -74,6 +98,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        api = new API("http://10.0.2.2:8080", this);
     }
 
     private void attemptSignUp() {
@@ -93,17 +119,13 @@ public class LoginActivity extends AppCompatActivity {
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        Facade facade = new Facade();
-
-        ProfesorVO profe = facade.perfilProfesor("profesor");
-
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-        int tipo = 0;
+        int tipo;
 
         if (email.equals("alumno@")) {
-            tipo = 2;
+            tipo = 0;
         }
         else {
             tipo = 1;
@@ -120,14 +142,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !(password.equals(profe.getPassword()))) {
+        /*if (!TextUtils.isEmpty(password) && !(password.equals(profe.getPassword()))) {
             mPasswordView.setError("Contraseña incorrecta");
             focusView = mPasswordView;
             cancel = true;
-        }
+        }*/
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        /*if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
@@ -135,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
-        }
+        }*/
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -145,13 +167,38 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
+
+            /* Prepara la petición POST al backend */
+            JSONObject payload = new JSONObject();
+            try{
+                payload.put("userName", email);
+                payload.put("password", password);
+                payload.put("tipo", tipo);
+            } catch (JSONException ex) {}
+
+            /* Envia la petición */
+            try {
+                JSONObject resultado = api.post("/api/login", payload);
+            } catch (APIexception e) {
+                // Si el código de error era diferente a OK, habrá excepcion
+                // La ex tendrá el código de error y el json de la respuesta del servidor
+                Log.d("API", "Error solicitando login -> " + e.code + " | " + e.json);
+                showProgress(false);
+
+                mEmailView.setError("Usuario o contraseña incorrectos");
+                mEmailView.requestFocus();
+                return;
+            }
+
             Intent i = null;
             if (tipo == 1) { //profesor
                 i = new Intent(this, Perfil_Profesor.class);
             }
-            else if (tipo == 2) { //alumno
+            else if (tipo == 0) { //alumno
                 i = new Intent(this, Busqueda_Profesores.class);
             }
+
+            showProgress(false);
             startActivity(i);
 
         }
@@ -164,7 +211,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() >= 4;
     }
 
     /**
