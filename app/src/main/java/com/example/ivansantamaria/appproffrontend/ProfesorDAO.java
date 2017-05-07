@@ -30,7 +30,7 @@ public class ProfesorDAO {
             payload.put("email", prof.getMail());
             payload.put("telefono", prof.getTelefono());
             payload.put("ciudad", prof.getCiudad());
-            if(prof.getExperiencia() == null) payload.put("experiencia", " ");
+            if(prof.getExperiencia() == null) payload.put("experiencia", "---");
             else payload.put("experiencia", prof.getExperiencia());
             payload.put("tipo", 1);
         } catch (JSONException ex) { return 10; }
