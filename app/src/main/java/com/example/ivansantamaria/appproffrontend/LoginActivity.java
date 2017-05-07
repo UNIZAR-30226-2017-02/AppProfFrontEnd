@@ -1,3 +1,4 @@
+
 package com.example.ivansantamaria.appproffrontend;
 
 import android.animation.Animator;
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Instancia la api una vez en la clase
     API api;
+    private Facade facade;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -79,12 +81,19 @@ public class LoginActivity extends AppCompatActivity {
 
         mPasswordView = (EditText) findViewById(R.id.password);
 
-        //Button mEmailSignInButton = (Button) findViewById(R.id.mail_log_in_button);
-        Button mEmailSignInButton = (Button) findViewById(R.id.log_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button mEmailSignInButtonProf = (Button) findViewById(R.id.log_in_button_prof);
+        mEmailSignInButtonProf.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptLogin_Prof();
+            }
+        });
+
+        Button mEmailSignInButtonAlu = (Button) findViewById(R.id.log_in_button_alu);
+        mEmailSignInButtonAlu.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attemptLogin_Alu();
             }
         });
 
@@ -113,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptLogin_Prof() {
 
         // Reset errors.
         mEmailView.setError(null);
@@ -122,14 +131,6 @@ public class LoginActivity extends AppCompatActivity {
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-        int tipo;
-
-        if (email.equals("alumno@")) {
-            tipo = 0;
-        }
-        else {
-            tipo = 1;
-        }
 
         boolean cancel = false;
         View focusView = null;
@@ -141,24 +142,6 @@ public class LoginActivity extends AppCompatActivity {
             cancel = true;
         }
 
-        // Check for a valid password, if the user entered one.
-        /*if (!TextUtils.isEmpty(password) && !(password.equals(profe.getPassword()))) {
-            mPasswordView.setError("Contraseña incorrecta");
-            focusView = mPasswordView;
-            cancel = true;
-        }*/
-
-        // Check for a valid email address.
-        /*if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }*/
-
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -168,17 +151,10 @@ public class LoginActivity extends AppCompatActivity {
             // perform the user login attempt.
             showProgress(true);
 
-            /* Prepara la petición POST al backend */
-            JSONObject payload = new JSONObject();
-            try{
-                payload.put("userName", email);
-                payload.put("password", password);
-                payload.put("tipo", tipo);
-            } catch (JSONException ex) {}
-
             /* Envia la petición */
             try {
-                JSONObject resultado = api.post("/api/login", payload);
+                facade = new Facade(api);
+                JSONObject resultado = facade.login(new PersonaVO(email,password),1);
             } catch (APIexception e) {
                 // Si el código de error era diferente a OK, habrá excepcion
                 // La ex tendrá el código de error y el json de la respuesta del servidor
@@ -190,23 +166,63 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent i = null;
-            if (tipo == 1) { //profesor
-                i = new Intent(this, Perfil_Profesor.class);
-            }
-            else if (tipo == 0) { //alumno
-                i = new Intent(this, Busqueda_Profesores.class);
-            }
-
+            Intent i = new Intent(this, Perfil_Profesor.class);
             showProgress(false);
             startActivity(i);
 
         }
     }
 
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+    private void attemptLogin_Alu() {
+
+        // Reset errors.
+        mEmailView.setError(null);
+        mPasswordView.setError(null);
+
+        // Store values at the time of the login attempt.
+        String email = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid length password, if the user entered one.
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // Show a progress spinner, and kick off a background task to
+            // perform the user login attempt.
+            showProgress(true);
+
+            /* Envia la petición */
+            try {
+                facade = new Facade(api);
+                JSONObject resultado = facade.login(new PersonaVO(email,password),0);
+            } catch (APIexception e) {
+                System.out.println("llega");
+                // Si el código de error era diferente a OK, habrá excepcion
+                // La ex tendrá el código de error y el json de la respuesta del servidor
+                Log.d("API", "Error solicitando login -> " + e.code + " | " + e.json);
+                showProgress(false);
+
+                mEmailView.setError("Usuario o contraseña incorrectos");
+                mEmailView.requestFocus();
+                return;
+            }
+
+            Intent i = new Intent(this, Busqueda_Profesores.class);
+            showProgress(false);
+            startActivity(i);
+
+        }
     }
 
     private boolean isPasswordValid(String password) {

@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 public class Registro2 extends AppCompatActivity {
 
+    private Facade facade;
     private EditText username;
     private EditText password;
     private EditText confirmPassword;
@@ -88,40 +89,20 @@ public class Registro2 extends AppCompatActivity {
             else if (!phone.matches("[1-9]{9}")) return 7;
             else if (city.isEmpty()) return 9;
 
-            JSONObject payload = new JSONObject();
-            try
-            {
-                payload.put("userName", usr);
-                payload.put("password", psw);
-                payload.put("email", mail);
-                payload.put("telefono", phone);
-                payload.put("ciudad", city);
-                payload.put("experiencia", experience);
-                payload.put("tipo", 1);
-            } catch (JSONException ex) { return 10; }
-
-            try
-            {
-                api.post("/api/register", payload);
-                return -1;
+            facade = new Facade(api);
+            try {
+                return facade.registro_profesor(new ProfesorVO(usr,psw,phone,mail,city,null,null,
+                        null,-1.0f,experience,null));
             } catch (APIexception ex) { respuesta = ex.json; return 10; }
+
         } else {
             //Guardar en base de datos
             CheckBox tyc = (CheckBox) findViewById(R.id.TyC);
             if (!tyc.isEnabled()) return 8;
 
-            JSONObject payload = new JSONObject();
-            try
-            {
-                payload.put("userName", usr);
-                payload.put("password", psw);
-                payload.put("tipo", 0);
-            } catch (JSONException ex) { return 10; }
-
-            try
-            {
-                api.post("/api/register", payload);
-                return -1;
+            facade = new Facade(api);
+            try {
+                return facade.registro_alumno(new AlumnoVO(usr,psw));
             } catch (APIexception ex) { respuesta = ex.json; return 10; }
         }
     }

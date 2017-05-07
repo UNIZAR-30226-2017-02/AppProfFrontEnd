@@ -2,10 +2,8 @@ package com.example.ivansantamaria.appproffrontend;
 
 import java.util.ArrayList;
 
-public class ProfesorVO {
+public class ProfesorVO extends PersonaVO{
 
-    private String nombreUsuario = null;
-    private String password = null;
     private String telefono = null;
     private String mail = null;
     private String ciudad = null;
@@ -21,8 +19,8 @@ public class ProfesorVO {
                        ArrayList<String> asignaturas, Float valoracion, String experiencia,
                        String modalidad) {
 
-        if (nombreUsuario != null) this.nombreUsuario = nombreUsuario;
-        if (password != null) this.password = password;
+        if (nombreUsuario != null) super.nombreUsuario = nombreUsuario;
+        if (password != null) super.password = password;
         if (telefono != null) this.telefono = telefono;
         if (mail != null) this.mail = mail;
         if (ciudad != null) this.ciudad = ciudad;

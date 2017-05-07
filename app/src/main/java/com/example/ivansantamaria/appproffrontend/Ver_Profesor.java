@@ -64,7 +64,7 @@ public class Ver_Profesor extends AppCompatActivity {
     }
 
     public void pruebaMongo() {
-
+/*
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
         StrictMode.setThreadPolicy(policy);
@@ -79,7 +79,7 @@ public class Ver_Profesor extends AppCompatActivity {
             System.out.println("Salida");
             System.out.println(e);
             exit(1);
-        }
+        }*/
     }
 
     /*
