@@ -207,7 +207,6 @@ public class LoginActivity extends AppCompatActivity {
                 facade = new Facade(api);
                 JSONObject resultado = facade.login(new PersonaVO(email,password),0);
             } catch (APIexception e) {
-                System.out.println("llega");
                 // Si el código de error era diferente a OK, habrá excepcion
                 // La ex tendrá el código de error y el json de la respuesta del servidor
                 Log.d("API", "Error solicitando login -> " + e.code + " | " + e.json);

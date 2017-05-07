@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -24,6 +27,8 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
     private MultiSpinner curso;
     private Spinner modo;
     private Facade facade = null;
+    private API api;
+    private JSONObject respuesta;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,7 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
             }
         });
 
+        api = new API("http://10.0.2.2:8080", this);
 
     }
 
@@ -54,11 +60,28 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
         CheckBox tyc = (CheckBox) findViewById(R.id.TyC);
         ArrayList<String> horariosProf = horario.getValues();
         ArrayList<String> asignaturasProf = asignaturas.getValues();
-        if (!tyc.isEnabled()) return 8;
+
+        String exp = getIntent().getExtras().getString("profesor_exp");
+        if(exp.equals("")) exp = null;
+        ArrayList<String> cursosProf = curso.getValues();
+        if(cursosProf.isEmpty()) cursosProf = null;
+        String modulo = modo.getSelectedItem().toString();
+        if(modulo.equals("---")) modulo = null;
+
+        if (!tyc.isChecked()) return 8;
         else if (horariosProf.isEmpty()) return 1;
         else if (asignaturasProf.isEmpty()) return 2;
-        //Guardar en base de datos
-        return -1;
+
+        facade = new Facade(api);
+        try {
+            return facade.registro_profesor(new ProfesorVO(
+                    getIntent().getExtras().getString("profesor_user"),
+                    getIntent().getExtras().getString("profesor_psw"),
+                    getIntent().getExtras().getString("profesor_tlf"),
+                    getIntent().getExtras().getString("profesor_mail"),
+                    getIntent().getExtras().getString("profesor_ciu"),
+                    horariosProf,cursosProf,asignaturasProf,-1.0f, exp, modulo));
+        } catch (APIexception ex) { respuesta = ex.json; return 10; }
     }
 
     private void populateFields() {
@@ -91,6 +114,10 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
             case 8:
                 dlgAlert.setMessage("Acepte los terminos y condiciones");
                 break;
+            case 10:
+                try {
+                    dlgAlert.setMessage("Error durante el registro: \n" + respuesta.getString("message"));
+                } catch (JSONException ex) {dlgAlert.setMessage("Error durante el registro:");}
         }
         dlgAlert.setTitle("Error...");
         dlgAlert.setPositiveButton("OK", null);

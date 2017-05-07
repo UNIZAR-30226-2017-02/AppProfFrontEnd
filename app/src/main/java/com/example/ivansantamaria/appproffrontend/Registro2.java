@@ -50,7 +50,7 @@ public class Registro2 extends AppCompatActivity {
             final Intent i = new Intent(this, Registro3.class);
             siguiente.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
-                    final int code = guardarEnBd(prof);
+                    final int code = guardarEnBdProf(i);
                     if (code == -1) startActivity(i);
                     else error(code);
                 }
@@ -60,7 +60,7 @@ public class Registro2 extends AppCompatActivity {
             final Intent i = new Intent(this, Busqueda_Profesores.class);
             registro.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
-                    final int code = guardarEnBd(prof);
+                    final int code = guardarEnBdAl();
                     if (code == -1) startActivity(i);
                     else error(code);
                 }
@@ -70,7 +70,34 @@ public class Registro2 extends AppCompatActivity {
         api = new API("http://10.0.2.2:8080", this);
     }
 
-    private int guardarEnBd(int prof) {
+    private int guardarEnBdProf(final Intent i) {
+        String usr = username.getText().toString();
+        String psw = password.getText().toString();
+        String cpsw = confirmPassword.getText().toString();
+        String mail = email.getText().toString();
+        String phone = tlf.getText().toString();
+        String city = ciudad.getText().toString();
+        String experience = experiencia.getText().toString();
+        if (usr.isEmpty()) return 0;
+        else if (psw.isEmpty()) return 1;
+        else if (cpsw.isEmpty()) return 2;
+        else if (!cpsw.equals(psw)) return 3;
+        else if (mail.isEmpty()) return 4;
+        else if (!mail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+")) return 5;
+        else if (phone.isEmpty()) return 6;
+        else if (!phone.matches("[1-9]{9}")) return 7;
+        else if (city.isEmpty()) return 9;
+
+        i.putExtra("profesor_user", usr);
+        i.putExtra("profesor_psw", psw);
+        i.putExtra("profesor_tlf", phone);
+        i.putExtra("profesor_mail", mail);
+        i.putExtra("profesor_ciu", city);
+        i.putExtra("profesor_exp", experience);
+        return -1;
+    }
+
+    private int guardarEnBdAl() {
         String usr = username.getText().toString();
         String psw = password.getText().toString();
         String cpsw = confirmPassword.getText().toString();
@@ -78,33 +105,15 @@ public class Registro2 extends AppCompatActivity {
         else if (psw.isEmpty()) return 1;
         else if (cpsw.isEmpty()) return 2;
         else if (!cpsw.equals(psw)) return 3;
-        if (prof == 1) {
-            String mail = email.getText().toString();
-            String phone = tlf.getText().toString();
-            String city = ciudad.getText().toString();
-            String experience = experiencia.getText().toString();
-            if (mail.isEmpty()) return 4;
-            else if (!mail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+")) return 5;
-            else if (phone.isEmpty()) return 6;
-            else if (!phone.matches("[1-9]{9}")) return 7;
-            else if (city.isEmpty()) return 9;
 
-            facade = new Facade(api);
-            try {
-                return facade.registro_profesor(new ProfesorVO(usr,psw,phone,mail,city,null,null,
-                        null,-1.0f,experience,null));
-            } catch (APIexception ex) { respuesta = ex.json; return 10; }
+        //Guardar en base de datos
+        CheckBox tyc = (CheckBox) findViewById(R.id.TyC);
+        if (!tyc.isChecked()) return 8;
 
-        } else {
-            //Guardar en base de datos
-            CheckBox tyc = (CheckBox) findViewById(R.id.TyC);
-            if (!tyc.isEnabled()) return 8;
-
-            facade = new Facade(api);
-            try {
-                return facade.registro_alumno(new AlumnoVO(usr,psw));
-            } catch (APIexception ex) { respuesta = ex.json; return 10; }
-        }
+        facade = new Facade(api);
+        try {
+            return facade.registro_alumno(new AlumnoVO(usr,psw));
+        } catch (APIexception ex) { respuesta = ex.json; return 10; }
     }
 
     private void error(int code) {

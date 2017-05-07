@@ -30,11 +30,23 @@ public class ProfesorDAO {
             payload.put("email", prof.getMail());
             payload.put("telefono", prof.getTelefono());
             payload.put("ciudad", prof.getCiudad());
-            payload.put("experiencia", prof.getExperiencia());
+            if(prof.getExperiencia() == null) payload.put("experiencia", " ");
+            else payload.put("experiencia", prof.getExperiencia());
             payload.put("tipo", 1);
         } catch (JSONException ex) { return 10; }
 
         api.post("/api/register", payload);
+/*
+        JSONObject payload2 = new JSONObject();
+        try
+        {
+            String horarios = "";
+            for (String hor : prof.getHorarios()) horarios += hor + ",";
+            horarios = horarios.substring(0, horarios.length()-1);
+            payload2.put("horarios", horarios);
+        } catch (JSONException ex) { return 10; }
+
+        api.post("/api/perfil/set", payload2);*/
         return -1;
     }
 
