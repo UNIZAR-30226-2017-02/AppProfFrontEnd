@@ -1,5 +1,8 @@
 package com.example.ivansantamaria.appproffrontend;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class AlumnoDAO {
 
     public AlumnoVO perfilProfesor(String alumno_) {
@@ -16,6 +19,20 @@ public class AlumnoDAO {
         alumno = new AlumnoVO("lfueris", "Salty_as02!KjanUQP},,<as");
 
         return alumno;
+    }
+
+    public int registro_alumno(API api, AlumnoVO alum) throws APIexception{
+        JSONObject payload = new JSONObject();
+        try
+        {
+            payload.put("userName", alum.getNombreUsuario());
+            payload.put("password", alum.getPassword());
+            payload.put("tipo", 0);
+        } catch (JSONException ex) { return 10; }
+
+        api.post("/api/register", payload);
+        return -1;
+
     }
 
 }

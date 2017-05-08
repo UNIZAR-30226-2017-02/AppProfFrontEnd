@@ -7,31 +7,33 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Horarios"
+        android:text="Horarios*"
         android:textSize="18sp"
         android:textStyle="normal|bold" />
 
-    <cz.destil.settleup.gui.MultiSpinner
-        android:id="@+id/horarioProfesor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <com.example.ivansantamaria.appproffrontend.MultiSpinner
+        android:id="@+id/horariosProfesorReg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Asignaturas"
+        android:text="Asignaturas*"
         android:textSize="18sp"
         android:textStyle="normal|bold" />
 
-    <cz.destil.settleup.gui.MultiSpinner
-        android:id="@+id/asigProfesor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <com.example.ivansantamaria.appproffrontend.MultiSpinner
+        android:id="@+id/asignaturasProfesorReg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/curso"
@@ -41,8 +43,8 @@
             android:textSize="18sp"
             android:textStyle="normal|bold" />
 
-        <Spinner
-            android:id="@+id/spinner5"
+        <com.example.ivansantamaria.appproffrontend.MultiSpinner
+            android:id="@+id/cursoProfesorReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
@@ -57,12 +59,12 @@
             android:id="@+id/modo"
             android:layout_width="163dp"
             android:layout_height="wrap_content"
-            android:text="Modo de curso"
+            android:text="Modalidad"
             android:textSize="18sp"
             android:textStyle="normal|bold" />
 
         <Spinner
-            android:id="@+id/spinner6"
+            android:id="@+id/modalidadProfesorReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
@@ -70,13 +72,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="114dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
         android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/TyC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_weight="1"
             android:checked="false"
             android:duplicateParentState="false"
@@ -86,6 +90,7 @@
             android:id="@+id/registerbutton"
             android:layout_width="134dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:text="Registrarse" />
     </LinearLayout>
 

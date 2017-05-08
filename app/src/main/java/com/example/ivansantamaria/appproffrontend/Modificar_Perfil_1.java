@@ -16,7 +16,7 @@ public class Modificar_Perfil_1 extends AppCompatActivity implements MultiSpinne
 
     private Facade facade = null;
     private ProfesorVO profesor = null;
-
+    private API api;
     private TextView user;
     private EditText telefono;
     private EditText email;
@@ -30,44 +30,20 @@ public class Modificar_Perfil_1 extends AppCompatActivity implements MultiSpinne
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar__perfil_1);
 
+        api = new API("http://10.0.2.2:8080", this);
         final com.example.ivansantamaria.appproffrontend.Modificar_Perfil_1 local = this;
         siguienteButton = (Button) findViewById(R.id.siguienteMod);
 
-        facade = new Facade();
+        facade = new Facade(api);
         profesor = facade.perfilProfesor("Isak");
         populateFields();
-
+        final Intent i = new Intent(this, Modificar_Perfil_2.class);
         siguienteButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                String telefonoProf = telefono.getText().toString();
-                String emailProf = email.getText().toString();
-                String ciudadProf = ciudad.getText().toString();
-                ArrayList<String> horariosProf = horarios.getValues();
-                ArrayList<String> asignaturasProf = asignaturas.getValues();
-
-                if(telefonoProf.equals("") || emailProf.equals("") || ciudadProf.equals("") ||
-                        horariosProf.isEmpty() || asignaturasProf.isEmpty())
-                {
-                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(local);
-
-                    dlgAlert.setMessage("Todos estos campos son obligatorios");
-                    dlgAlert.setTitle("Error...");
-                    dlgAlert.setPositiveButton("OK", null);
-                    dlgAlert.setCancelable(true);
-                    dlgAlert.create().show();
-
-                    dlgAlert.setPositiveButton("Ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                } else {
-                    //ACTUALIZAR BASE DE DATOS
-                    Intent i = new Intent(local, Modificar_Perfil_2.class);
-                    startActivityForResult(i, 0);
-                }
+                final int code = guardarEnBdProf(i);
+                if (code == -1) startActivity(i);
+                else error(code);
             }
         });
 
@@ -97,6 +73,61 @@ public class Modificar_Perfil_1 extends AppCompatActivity implements MultiSpinne
 
     }
 
+    private int guardarEnBdProf(final Intent i) {
+        String mail = email.getText().toString();
+        String phone = telefono.getText().toString();
+        String city = ciudad.getText().toString();
+        ArrayList<String> horariosProf = horarios.getValues();
+        ArrayList<String> asignaturasProf = asignaturas.getValues();
+        if (mail.isEmpty()) return 4;
+        else if (!mail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+")) return 5;
+        else if (phone.isEmpty()) return 6;
+        else if (!phone.matches("[1-9]{9}")) return 7;
+        else if (city.isEmpty()) return 9;
+        else if (horariosProf.isEmpty()) return 8;
+        else if (asignaturasProf.isEmpty()) return 10;
+
+        i.putExtra("profesor_tlf", phone);
+        i.putExtra("profesor_mail", mail);
+        i.putExtra("profesor_ciu", city);
+        i.putExtra("profesor_hor", horariosProf);
+        i.putExtra("profesor_asig", asignaturasProf);
+        return -1;
+    }
+
+    private void error(int code) {
+        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
+        switch (code) {
+            case 4:
+                dlgAlert.setMessage("Rellene el campo de e-mail");
+                break;
+            case 5:
+                dlgAlert.setMessage("Introduzca un e-mail valido");
+                break;
+            case 6:
+                dlgAlert.setMessage("Rellene el campo de telefono");
+                break;
+            case 7:
+                dlgAlert.setMessage("Introduzca un telefono valido");
+                break;
+            case 8:
+                dlgAlert.setMessage("Debe seleccionar al menos un horario");
+                break;
+            case 9:
+                dlgAlert.setMessage("Rellene el campo de Ciudad");
+            case 10:
+                dlgAlert.setMessage("Debe seleccionar al menos una asignatura");
+        }
+        dlgAlert.setTitle("Error...");
+        dlgAlert.setPositiveButton("OK", null);
+        dlgAlert.setCancelable(true);
+        dlgAlert.create().show();
+        dlgAlert.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+    }
     public void onItemsSelected(boolean[] selected) {
         //Esto hay que ponerlo pero a saber para que... seguiremos investigando
     }

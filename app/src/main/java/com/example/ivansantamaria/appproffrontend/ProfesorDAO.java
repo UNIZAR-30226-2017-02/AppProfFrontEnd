@@ -1,5 +1,8 @@
 package com.example.ivansantamaria.appproffrontend;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class ProfesorDAO {
@@ -16,6 +19,36 @@ public class ProfesorDAO {
                 "profesor particular de matemática discreta","Presencial");
 
         return profe;
+    }
+
+    public int registro_profesor(API api, ProfesorVO prof) throws APIexception{
+        JSONObject payload = new JSONObject();
+        try
+        {
+            payload.put("userName", prof.getNombreUsuario());
+            payload.put("password", prof.getPassword());
+            payload.put("email", prof.getMail());
+            payload.put("telefono", prof.getTelefono());
+            payload.put("ciudad", prof.getCiudad());
+            if(prof.getExperiencia() == null) payload.put("experiencia", "---");
+            else payload.put("experiencia", prof.getExperiencia());
+            payload.put("tipo", 1);
+        } catch (JSONException ex) { return 10; }
+
+        api.post("/api/register", payload);
+
+        JSONObject payload2 = new JSONObject();
+        try
+        {
+            String horarios = "";
+            for (String hor : prof.getHorarios()) horarios += hor + ",";
+            horarios = horarios.substring(0, horarios.length()-1);
+            payload2.put("horarios", horarios);
+
+        } catch (JSONException ex) { return 10; }
+
+        api.post("/api/perfil/set", payload2);
+        return -1;
     }
 
 }

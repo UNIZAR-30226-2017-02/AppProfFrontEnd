@@ -1,6 +1,7 @@
 package com.example.ivansantamaria.appproffrontend;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -63,17 +64,22 @@ public class Ver_Profesor extends AppCompatActivity {
     }
 
     public void pruebaMongo() {
+/*
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
 
         API api = new API("http://10.0.2.2:8080");
         String peticion = "{\n \"userName\" : \"hola\" \n}";
         try {
-            JSONObject o = api.post("/api/login",peticion);
+            JSONObject o = api.post("/api/perfil/get", peticion);
+            //JSONObject o = api.get("/api/perfil/get");
             System.out.println(o.toString());
         } catch(Exception e) {
             System.out.println("Salida");
             System.out.println(e);
             exit(1);
-        }
+        }*/
     }
 
     /*
