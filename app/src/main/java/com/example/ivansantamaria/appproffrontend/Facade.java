@@ -46,6 +46,11 @@ public class Facade {
         return profesorDAO.registro_profesor(api, prof);
     }
 
+    public int actualizar_profesor(ProfesorVO prof) throws APIexception {
+        ProfesorDAO profesorDAO = new ProfesorDAO();
+        return profesorDAO.actualizar_profesor(api, prof);
+    }
+
     public JSONObject login(PersonaVO per, int tipo) throws APIexception{
         PersonaDAO personaDAO = new PersonaDAO();
         return personaDAO.login(api, per, tipo);
