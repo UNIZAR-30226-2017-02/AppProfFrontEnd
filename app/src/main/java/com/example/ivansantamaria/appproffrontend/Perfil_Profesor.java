@@ -36,7 +36,8 @@ public class Perfil_Profesor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil__profesor);
-
+        InfoSesion info = new InfoSesion(this);
+        System.out.println(info.getUsername());
         final com.example.ivansantamaria.appproffrontend.Perfil_Profesor local = this;
         modificarButton = (Button) findViewById(R.id.modifyProfesor);
         pagarButton = (Button) findViewById(R.id.pagarProfesor);

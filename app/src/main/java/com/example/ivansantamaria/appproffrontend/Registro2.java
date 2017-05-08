@@ -28,13 +28,18 @@ public class Registro2 extends AppCompatActivity {
     private EditText email;
     private EditText tlf;
     private int prof;
+    private String user;
 
     private API api;
     private JSONObject respuesta;
+    private InfoSesion info;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        info = new InfoSesion(this);
         prof = getIntent().getExtras().getInt("persona");
         if (prof == 1) setContentView(R.layout.activity_registro2_profesor);
         else setContentView(R.layout.activity_registro2_alumno);
@@ -61,7 +66,10 @@ public class Registro2 extends AppCompatActivity {
             registro.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     final int code = guardarEnBdAl();
-                    if (code == -1) startActivity(i);
+                    if (code == -1) {
+                        info.set(user,0);
+                        startActivity(i);
+                    }
                     else error(code);
                 }
             });
@@ -72,6 +80,7 @@ public class Registro2 extends AppCompatActivity {
 
     private int guardarEnBdProf(final Intent i) {
         String usr = username.getText().toString();
+        String user = usr;
         String psw = password.getText().toString();
         String cpsw = confirmPassword.getText().toString();
         String mail = email.getText().toString();

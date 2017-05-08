@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSpinnerListener {
 
+    private String user;
     private MultiSpinner horario;
     private MultiSpinner asignaturas;
     private MultiSpinner curso;
@@ -33,6 +34,9 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        user = getIntent().getExtras().getString("profesor_user");
+        System.out.println("usuario"+user);
+        InfoSesion info = new InfoSesion(this,user,1);
 
         facade = new Facade();
         setContentView(R.layout.activity_registro3_profesor);
@@ -46,7 +50,9 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
         registro.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 final int code = guardarEnBd();
-                if (code == -1) startActivity(i);
+                if (code == -1) {
+                    startActivity(i);
+                }
                 else error(code);
             }
         });
@@ -66,7 +72,6 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
         ArrayList<String> cursosProf = curso.getValues();
         if(cursosProf.isEmpty()) cursosProf = null;
         String modulo = modo.getSelectedItem().toString();
-        if(modulo.equals("---")) modulo = null;
 
         if (!tyc.isChecked()) return 8;
         else if (horariosProf.isEmpty()) return 1;
@@ -75,8 +80,7 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
         facade = new Facade(api);
         try {
             return facade.registro_profesor(new ProfesorVO(
-                    getIntent().getExtras().getString("profesor_user"),
-                    getIntent().getExtras().getString("profesor_psw"),
+                    user, getIntent().getExtras().getString("profesor_psw"),
                     getIntent().getExtras().getString("profesor_tlf"),
                     getIntent().getExtras().getString("profesor_mail"),
                     getIntent().getExtras().getString("profesor_ciu"),
