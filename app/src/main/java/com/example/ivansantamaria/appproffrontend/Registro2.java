@@ -94,7 +94,7 @@ public class Registro2 extends AppCompatActivity {
         else if (mail.isEmpty()) return 4;
         else if (!mail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+")) return 5;
         else if (phone.isEmpty()) return 6;
-        else if (!phone.matches("[1-9]{9}")) return 7;
+        else if (!phone.matches("[0-9]{9}")) return 7;
         else if (city.isEmpty()) return 9;
 
         i.putExtra("profesor_user", usr);
