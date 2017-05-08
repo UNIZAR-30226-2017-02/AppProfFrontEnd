@@ -38,7 +38,7 @@ public class Modificar_Perfil_2 extends AppCompatActivity implements MultiSpinne
         sesion = new InfoSesion(this);
         api = new API("http://10.0.2.2:8080", this);
         facade = new Facade(api);
-        profesor = facade.perfilProfesor(sesion.getUsername());
+        //profesor = facade.perfilProfesor(sesion.getUsername());
         populateFields();
         final Intent i = new Intent(this, Perfil_Profesor.class);
         confirmarButton.setOnClickListener(new View.OnClickListener() {

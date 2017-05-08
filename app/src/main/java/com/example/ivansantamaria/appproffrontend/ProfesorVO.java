@@ -10,13 +10,13 @@ public class ProfesorVO extends PersonaVO{
     private ArrayList<String> horarios = null;
     private ArrayList<String> cursos = null;
     private ArrayList<String> asignaturas = null;
-    private Float valoracion = -1.0f;
+    private Double valoracion = -1.00;
     private String experiencia = null;
     private String modalidad = null;
 
     public ProfesorVO (String nombreUsuario, String password, String telefono, String mail, String ciudad,
                        ArrayList<String> horarios, ArrayList<String> cursos,
-                       ArrayList<String> asignaturas, Float valoracion, String experiencia,
+                       ArrayList<String> asignaturas, Double valoracion, String experiencia,
                        String modalidad) {
 
         if (nombreUsuario != null) super.nombreUsuario = nombreUsuario;
@@ -91,10 +91,10 @@ public class ProfesorVO extends PersonaVO{
         this.asignaturas = asignaturas;
     }
 
-    public Float getValoracion() {
+    public Double getValoracion() {
         return valoracion;
     }
-    public void setValoracion(Float valoracion) {
+    public void setValoracion(Double valoracion) {
         this.valoracion = valoracion;
     }
 

@@ -30,10 +30,10 @@ public class Facade {
         this.api = null;
     }
 
-    public ProfesorVO perfilProfesor(String profesor) {
+    public ProfesorVO perfilProfesor(String profesor) throws APIexception {
         //Completa con la base de datos, aquí realizar conexión a base de datos
         ProfesorDAO profesorDAO = new ProfesorDAO();
-        return profesorDAO.perfilProfesor(profesor);
+        return profesorDAO.perfilProfesor(api, profesor);
     }
 
     public int registro_alumno(AlumnoVO alum) throws APIexception{

@@ -80,7 +80,7 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
                     getIntent().getExtras().getString("profesor_tlf"),
                     getIntent().getExtras().getString("profesor_mail"),
                     getIntent().getExtras().getString("profesor_ciu"),
-                    horariosProf,cursosProf,asignaturasProf,-1.0f, exp, modulo));
+                    horariosProf,cursosProf,asignaturasProf,-1.00, exp, modulo));
         } catch (APIexception ex) { respuesta = ex.json; return 10; }
     }
 

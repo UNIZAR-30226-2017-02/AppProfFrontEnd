@@ -10,12 +10,14 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 public class Perfil_Profesor extends AppCompatActivity {
 
     private Facade facade = null;
     private ProfesorVO profesor = null;
 
-
+    private JSONObject respuesta;
     private TextView user;
     private RatingBar valoracion;
     private TextView telefono;
@@ -28,7 +30,7 @@ public class Perfil_Profesor extends AppCompatActivity {
     private Spinner horarios = null;
     private Spinner cursos = null;
     private Spinner asignaturas = null;
-
+    private API api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +59,12 @@ public class Perfil_Profesor extends AppCompatActivity {
         });
 
         facade = new Facade();
-        profesor = facade.perfilProfesor("Isak");
-        populateFields();
+        api = new API("http://10.0.2.2:8080", this);
+        try {
+            profesor = facade.perfilProfesor("prof7");
+            populateFields();
+        } catch (APIexception ex) { respuesta = ex.json; }
+
 
     }
 
@@ -67,7 +73,7 @@ public class Perfil_Profesor extends AppCompatActivity {
         user.setText(profesor.getNombreUsuario());
 
         valoracion = (RatingBar) findViewById(R.id.valoracionProfesor);
-        valoracion.setRating(profesor.getValoracion());
+        valoracion.setRating(profesor.getValoracion().floatValue());
 
         telefono = (TextView) findViewById(R.id.tlfnoProfesor);
         telefono.setText(profesor.getTelefono());

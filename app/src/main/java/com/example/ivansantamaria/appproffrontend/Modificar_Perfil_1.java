@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Modificar_Perfil_1 extends AppCompatActivity implements MultiSpinner.MultiSpinnerListener {
@@ -24,6 +26,7 @@ public class Modificar_Perfil_1 extends AppCompatActivity implements MultiSpinne
     private MultiSpinner horarios = null;
     private MultiSpinner asignaturas = null;
     private Button siguienteButton = null;
+    private JSONObject respuesta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,13 @@ public class Modificar_Perfil_1 extends AppCompatActivity implements MultiSpinne
         final com.example.ivansantamaria.appproffrontend.Modificar_Perfil_1 local = this;
         siguienteButton = (Button) findViewById(R.id.siguienteMod);
 
-        facade = new Facade(api);
-        profesor = facade.perfilProfesor("Isak");
+        facade = new Facade();
+        api = new API("http://10.0.2.2:8080", this);
+        try {
+            profesor = facade.perfilProfesor("prof7");
+            populateFields();
+        } catch (APIexception ex) { respuesta = ex.json; }
+
         populateFields();
         final Intent i = new Intent(this, Modificar_Perfil_2.class);
         siguienteButton.setOnClickListener(new View.OnClickListener() {

@@ -1,7 +1,6 @@
 package com.example.ivansantamaria.appproffrontend;
 
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,10 +11,6 @@ import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.json.JSONObject;
-
-import static java.lang.System.exit;
 
 
 public class Ver_Profesor extends AppCompatActivity {
@@ -49,11 +44,11 @@ public class Ver_Profesor extends AppCompatActivity {
         setContentView(R.layout.activity_ver_profesor);
 
         facade = new Facade();
-        profesor = facade.perfilProfesor(" Isak");
+        //profesor = facade.perfilProfesor(" Isak");
         populateFields();
 
         // Prueba mongo
-        pruebaMongo();
+        //pruebaMongo();
 
         // Listeners barra de Rating y botón de enviar la valoración
         addListenerOnRatingBar();

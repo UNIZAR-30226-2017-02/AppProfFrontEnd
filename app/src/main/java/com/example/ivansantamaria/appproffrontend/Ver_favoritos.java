@@ -62,8 +62,8 @@ public class Ver_favoritos extends AppCompatActivity {
         Facade facade = new Facade();
         //Buscamos los profesores
         m_profesores = new ArrayList<>();//Facade.buscarProfesores(nombre,ciudad, horario, asignatura, curso);
-        m_profesores.add(facade.perfilProfesor("David"));
-        m_profesores.add(facade.perfilProfesor("Fuste"));
+        //m_profesores.add(facade.perfilProfesor("David"));
+        //m_profesores.add(facade.perfilProfesor("Fuste"));
         // Si no existen profesores se muestra mensaje
         if (m_profesores.isEmpty()){
             TextView empty = (TextView)findViewById(R.id.empty);
