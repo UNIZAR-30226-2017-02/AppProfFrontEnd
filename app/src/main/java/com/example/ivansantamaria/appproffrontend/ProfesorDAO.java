@@ -36,7 +36,7 @@ public class ProfesorDAO {
         } catch (JSONException ex) { return 10; }
 
         api.post("/api/register", payload);
-/*
+
         JSONObject payload2 = new JSONObject();
         try
         {
@@ -44,9 +44,10 @@ public class ProfesorDAO {
             for (String hor : prof.getHorarios()) horarios += hor + ",";
             horarios = horarios.substring(0, horarios.length()-1);
             payload2.put("horarios", horarios);
+
         } catch (JSONException ex) { return 10; }
 
-        api.post("/api/perfil/set", payload2);*/
+        api.post("/api/perfil/set", payload2);
         return -1;
     }
 
