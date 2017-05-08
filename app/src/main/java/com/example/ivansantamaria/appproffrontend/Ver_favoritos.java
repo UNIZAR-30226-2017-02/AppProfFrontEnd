@@ -83,18 +83,17 @@ public class Ver_favoritos extends AppCompatActivity {
             // Se añaden los profesores encontrados al cursor
             for (int i = 0; i < m_profesores.size(); i++) {
                 ProfesorVO p = m_profesores.get(i);
-                profesorCursor.addRow(new Object[]{i, p.getNombreUsuario(), p.getCiudad(),
-                        p.getAsignaturas(), p.getHorarios(), p.getValoracion()});
+                profesorCursor.addRow(new Object[]{i, p.getNombreUsuario(),
+                        p.getAsignaturas()});
             }
 
             // and an array of the fields we want to bind those fields to
-            int[] to = new int[]{R.id.nombreProfesorListar, R.id.ciudadProfesorListar,
-                    R.id.asignaturasProfesorListar, R.id.horariosProfesorListar,
-                    R.id.valoracionesProfesorListar};
+            int[] to = new int[]{R.id.nombreProfesorListar,
+                    R.id.asignaturasProfesorListar};
 
             // Now create an array adapter and set it to display using our row
             SimpleCursorAdapter profesor =
-                    new SimpleCursorAdapter(this, R.layout.row_listar_profesores, profesorCursor,
+                    new SimpleCursorAdapter(this, R.layout.row_ver_favoritos, profesorCursor,
                             from, to);
             listView.setAdapter(profesor);
         }
