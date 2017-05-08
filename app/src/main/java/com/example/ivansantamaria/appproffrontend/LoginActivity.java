@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
         info = new InfoSesion(this);
 
-        if (info.getTipo() != -1)
+       if (info.getTipo() != -1)
         {
             Intent i = (info.getTipo() == 0) ? new Intent(this, Busqueda_Profesores.class) : new Intent(this, Perfil_Profesor.class);
             startActivity(i);

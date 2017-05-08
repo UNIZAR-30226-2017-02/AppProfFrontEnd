@@ -35,10 +35,10 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = getIntent().getExtras().getString("profesor_user");
-        System.out.println("usuario"+user);
         InfoSesion info = new InfoSesion(this,user,1);
 
-        facade = new Facade();
+        api = new API("http://10.0.2.2:8080", this);
+        facade = new Facade(api);
         setContentView(R.layout.activity_registro3_profesor);
         horario = (MultiSpinner) findViewById(R.id.horariosProfesorReg);
         asignaturas = (MultiSpinner) findViewById(R.id.asignaturasProfesorReg);
@@ -57,7 +57,6 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
             }
         });
 
-        api = new API("http://10.0.2.2:8080", this);
 
     }
 

@@ -149,7 +149,7 @@ public class API
             if (error) {
                 throw new APIexception(connection.getResponseCode(), jObject);
             }
-        } catch (Exception ex) {jObject = new JSONArray(); }
+        } catch (Exception ex) {jObject = new JSONArray();}
 
         return jObject;
 	}

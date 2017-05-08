@@ -1,8 +1,11 @@
 package com.example.ivansantamaria.appproffrontend;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class Facade {
 
@@ -11,9 +14,6 @@ public class Facade {
     //Deberían ser consultas
     private ArrayList<String> horariosDisponibles = new ArrayList<String>() {{
        add("Lunes Mañana"); add("Lunes Tarde"); add("Martes Mañana"); add("Martes Tarde");
-    }};
-    private ArrayList<String> asignaturasDisponibles = new ArrayList<String>() {{
-        add("Matemáticas"); add("Ingles"); add("Lengua"); add("Física");
     }};
     private ArrayList<String> cursosDisponibles = new ArrayList<String>() {{
         add("Primaria"); add("Secundaria"); add("Universidad");
@@ -63,7 +63,25 @@ public class Facade {
     }
 
     public ArrayList<String> getAsignaturasDisponibles() {
-        return asignaturasDisponibles;
+        ArrayList<String> lista = new ArrayList<String>();
+
+        try
+        {
+            JSONArray json = api.getArray("/api/asignaturas/get");
+
+            for(int i = 0; i < json.length(); i++)
+            {
+                try {
+                    JSONObject jo = json.getJSONObject(i);
+                    lista.add(jo.getString("nombre"));
+                } catch (JSONException e){e.printStackTrace();}
+            }
+
+        } catch (APIexception ex) {
+            ex.printStackTrace();}
+
+        return lista;
+
     }
 
     public ArrayList<String> getCursosDisponibles() {
