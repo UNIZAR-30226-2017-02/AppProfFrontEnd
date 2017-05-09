@@ -12,15 +12,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Listar_Profesores extends AppCompatActivity {
 
     private String profesor;
 
     private String nombre;
     private String ciudad;
-    private ArrayList<String> horario;
-    private ArrayList<String> asignatura;
-    private ArrayList<String> curso;
+    private ArrayList<String> horarios;
+    private ArrayList<String> asignaturas;
+    private ArrayList<String> cursos;
 
     private ListView listView;
     private ArrayList<ProfesorVO> m_profesores;
@@ -43,9 +47,9 @@ public class Listar_Profesores extends AppCompatActivity {
         nombre = (extras != null) ? extras.getString("nombre") : null;
         ciudad = (extras != null) ? extras.getString("ciudad") : null;
         // Horario, asignatura y curso si no han sido rellenados -> "---"
-        horario = (extras != null) ? extras.getStringArrayList("horario") : null;
-        asignatura = (extras != null) ? extras.getStringArrayList("asignatura") : null;
-        curso = (extras != null) ? extras.getStringArrayList("curso") : null;
+        horarios = (extras != null) ? extras.getStringArrayList("horarios") : null;
+        asignaturas = (extras != null) ? extras.getStringArrayList("asignaturas") : null;
+        cursos = (extras != null) ? extras.getStringArrayList("cursos") : null;
 
         fillData();
 
@@ -67,7 +71,7 @@ public class Listar_Profesores extends AppCompatActivity {
         // Acceso a la base de datos
         Facade facade = new Facade();
         //Buscamos los profesores
-        m_profesores = new ArrayList<>();//Facade.buscarProfesores(nombre,ciudad, horario, asignatura, curso);
+        m_profesores = getData();//Facade.buscarProfesores(nombre,ciudad, horario, asignatura, curso);
         //m_profesores.add(facade.perfilProfesor("David"));
         //m_profesores.add(facade.perfilProfesor("Fuste"));
         // Si no existen profesores se muestra mensaje
@@ -112,6 +116,27 @@ public class Listar_Profesores extends AppCompatActivity {
         Intent i = new Intent(this, Ver_Profesor.class);
         i.putExtra("nombreUsuario", profesor);
         startActivityForResult(i, ACTIVITY_VER_PROFESOR);
+    }
+
+    private ArrayList<ProfesorVO> getData(){
+        API api = new API("http://10.0.2.2:8080",this);
+        JSONObject jsonPost = new JSONObject();
+        ArrayList<ProfesorVO> list = new ArrayList<>();
+        try{
+            jsonPost.put("nombre",nombre);
+            jsonPost.put("ciudad",ciudad);
+            jsonPost.put("horarios",new JSONArray(horarios));
+            jsonPost.put("asignaturas",new JSONArray(asignaturas));
+            jsonPost.put("cursos",new JSONArray(cursos));
+            try {
+                JSONArray jArray = api.postArray("/api/busqueda", jsonPost);
+                for (int i=0; i < jArray.length(); i++) {
+                    JSONObject jaux = jArray.getJSONObject(i);
+                    list.add(new ProfesorVO(jaux));
+                }
+            } catch (APIexception epi) {epi.printStackTrace();}
+        } catch (JSONException e){e.printStackTrace();}
+        return list;
     }
 
 }

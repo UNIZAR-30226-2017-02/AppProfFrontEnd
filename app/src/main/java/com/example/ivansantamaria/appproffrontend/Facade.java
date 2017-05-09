@@ -5,6 +5,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class Facade {
@@ -86,7 +88,25 @@ public class Facade {
     }
 
     public ArrayList<String> getCursosDisponibles() {
-        return cursosDisponibles;
+        ArrayList<String> lista = new ArrayList<String>();
+        try
+        {
+            JSONArray json = api.getArray("/api/asignaturas/get");
+
+            for(int i = 0; i < json.length(); i++)
+            {
+                try {
+                    JSONObject jo = json.getJSONObject(i);
+                    lista.add(jo.getString("nivel"));
+                } catch (JSONException e){e.printStackTrace();}
+            }
+
+        } catch (APIexception ex) {
+            ex.printStackTrace();}
+
+        //Lo convertimos a un set, que no admite repetidos, y de nuevo a una lista
+        return (new ArrayList<>( new LinkedHashSet<>(lista)));
+
     }
 
     public ArrayList<String> getModalidadesDisponibles() {

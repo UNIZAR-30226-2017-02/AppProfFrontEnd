@@ -85,7 +85,7 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
     }
 
     private void populatefields(){
-        Facade facade = new Facade();
+        Facade facade = new Facade(new API("http://10.0.2.2:8080", this));
         nombre = (EditText) findViewById(R.id.usuarioProfesorBusqueda);
         ciudad = (EditText) findViewById(R.id.ciudadProfesorBusqueda);
 
@@ -114,11 +114,11 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
         i.putExtra("nombre", nombre.getText().toString());
         i.putExtra("ciudad", ciudad.getText().toString());
         ArrayList<String> horario = horarios.getValues();
-        i.putExtra("horario", horario);
+        i.putExtra("horarios", horario);
         ArrayList<String> asignatura = asignaturas.getValues();
-        i.putExtra("asignatura", asignatura);
+        i.putExtra("asignaturas", asignatura);
         ArrayList<String> curso = cursos.getValues();
-        i.putExtra("curso", curso);
+        i.putExtra("cursos", curso);
         startActivityForResult(i, ACTIVITY_LISTAR_BUSQUEDA);
     }
 
