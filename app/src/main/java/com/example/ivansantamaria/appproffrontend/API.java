@@ -38,7 +38,7 @@ public class API
 	{
 		this.baseurl = _baseurl;
         // Lee de la memoria del telefono si se tenía el token (Inicio automatico)
-        this.sharedPref = _context.getPreferences(Context.MODE_PRIVATE);
+        this.sharedPref = _context.getSharedPreferences("APPROF", Context.MODE_PRIVATE);
         this.token = sharedPref.getString("token", null);
 	}
 
@@ -48,12 +48,15 @@ public class API
 	 */
 	public JSONObject get (String _url) throws APIexception
 	{
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         JSONObject jObject;
         boolean error = false;
         try {
             URL url = new URL(this.baseurl + _url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+            //connection.setRequestMethod("GET");
             connection.setDoInput(true);
 
             // Si se disponía de token, se envía con la petición
@@ -109,13 +112,20 @@ public class API
 	 */
 	public JSONArray getArray (String _url) throws APIexception
 	{
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         JSONArray jObject;
         boolean error = false;
+        HttpURLConnection connection = null;
         try {
             URL url = new URL(this.baseurl + _url);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
+
+            connection.setConnectTimeout(1000);
+            connection.setReadTimeout(1000);
 
             // Si se disponía de token, se envía con la petición
             if (token != null) {
@@ -123,7 +133,6 @@ public class API
             }
 
             connection.connect();
-
             InputStream inputStream;
 
             try
@@ -137,6 +146,7 @@ public class API
             BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
 
             StringBuilder sb = new StringBuilder();
+
             String line;
 
             while ((line = rd.readLine()) != null) {
@@ -150,6 +160,9 @@ public class API
                 throw new APIexception(connection.getResponseCode(), jObject);
             }
         } catch (Exception ex) {jObject = new JSONArray();}
+        finally {
+            connection.disconnect();
+        }
 
         return jObject;
 	}
@@ -234,6 +247,9 @@ public class API
 	 */
 	public JSONArray postArray (String _url, JSONObject payload) throws APIexception
 	{
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         JSONArray jObject;
         boolean error = false;
         try {

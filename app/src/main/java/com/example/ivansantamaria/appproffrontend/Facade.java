@@ -64,7 +64,6 @@ public class Facade {
 
     public ArrayList<String> getAsignaturasDisponibles() {
         ArrayList<String> lista = new ArrayList<String>();
-
         try
         {
             JSONArray json = api.getArray("/api/asignaturas/get");
