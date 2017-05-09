@@ -10,11 +10,14 @@ public class ProfesorDAO {
     public ProfesorVO perfilProfesor(API api, String profesor) throws APIexception {
 
         JSONObject respuesta =  api.get("/api/perfil/info");
-
+        System.out.println("Entra: ");
         try {
             // cursos (se puede pasar como cadena vacía) modalidad y experiencia son opcionales
             // (cursos ponerlo a null). Modalidad (tres rayas) experiencia como cadena vacía
             String telefono = respuesta.getString("telefono");
+
+            System.out.println("Telefono: " + telefono);
+
             String mail = respuesta.getString("email");
             String ciudad = respuesta.getString("ciudad");
             // Pasar el string a ArrayList<String> según el token

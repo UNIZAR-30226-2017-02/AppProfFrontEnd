@@ -47,34 +47,12 @@ public class Ver_Profesor extends AppCompatActivity {
         //profesor = facade.perfilProfesor(" Isak");
         populateFields();
 
-        // Prueba mongo
-        //pruebaMongo();
-
         // Listeners barra de Rating y botón de enviar la valoración
         addListenerOnRatingBar();
         addListenerOnButtonValoracion();
         // Listener botón de profesor favorito
         addListenerOnButtonProfFavorito();
 
-    }
-
-    public void pruebaMongo() {
-/*
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
-
-        API api = new API("http://10.0.2.2:8080");
-        String peticion = "{\n \"userName\" : \"hola\" \n}";
-        try {
-            JSONObject o = api.post("/api/perfil/get", peticion);
-            //JSONObject o = api.get("/api/perfil/get");
-            System.out.println(o.toString());
-        } catch(Exception e) {
-            System.out.println("Salida");
-            System.out.println(e);
-            exit(1);
-        }*/
     }
 
     /*
