@@ -93,24 +93,8 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
         horario.setItems(facade.getHorariosDisponibles(), facade.getHorariosDisponibles(),
                 null, "", this);
 
-        //asignaturas.setItems(facade.getAsignaturasDisponibles(), facade.getAsignaturasDisponibles(),
-        //        null, "", this);
-        ArrayList<String> lista = new ArrayList<String>();
-        try
-        {
-            JSONArray json = api.getArray("/api/asignaturas/get");
-
-            for(int i = 0; i < json.length(); i++)
-            {
-                try {
-                    JSONObject jo = json.getJSONObject(i);
-                    lista.add(jo.getString("nombre"));
-                } catch (JSONException e){e.printStackTrace();}
-            }
-
-        } catch (APIexception ex) {
-            ex.printStackTrace();}
-        asignaturas.setItems(lista, lista, null, "", this);
+        asignaturas.setItems(facade.getAsignaturasDisponibles(), facade.getAsignaturasDisponibles(),
+                null, "", this);
 
         curso.setItems(facade.getCursosDisponibles(), facade.getCursosDisponibles(),
                 null, "", this);

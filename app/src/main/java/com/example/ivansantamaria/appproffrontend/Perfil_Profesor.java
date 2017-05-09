@@ -37,7 +37,7 @@ public class Perfil_Profesor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil__profesor);
         InfoSesion info = new InfoSesion(this);
-        System.out.println(info.getUsername());
+
         final com.example.ivansantamaria.appproffrontend.Perfil_Profesor local = this;
         modificarButton = (Button) findViewById(R.id.modifyProfesor);
         pagarButton = (Button) findViewById(R.id.pagarProfesor);
@@ -59,10 +59,10 @@ public class Perfil_Profesor extends AppCompatActivity {
             }
         });
 
-        facade = new Facade();
         api = new API("http://10.0.2.2:8080", this);
+        facade = new Facade(api);
         try {
-            profesor = facade.perfilProfesor("prof7");
+            profesor = facade.perfilProfesor(info.getUsername());
             populateFields();
         } catch (APIexception ex) { respuesta = ex.json; }
 

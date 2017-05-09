@@ -14,9 +14,11 @@ public class Facade {
     //Deberían ser consultas
     private ArrayList<String> horariosDisponibles = new ArrayList<String>() {{
        add("Lunes Mañana"); add("Lunes Tarde"); add("Martes Mañana"); add("Martes Tarde");
+        add("Miércoles Mañana"); add("Miércoles Tarde"); add("Jueves Mañana"); add("Jueves Tarde");
+        add("Viernes Mañana"); add("Viernes Tarde");
     }};
     private ArrayList<String> cursosDisponibles = new ArrayList<String>() {{
-        add("Primaria"); add("Secundaria"); add("Universidad");
+        add("Primaria"); add("Secundaria"); add("Universidad"); add("PhD");
     }};
     private ArrayList<String> modalidadesDisponibles = new ArrayList<String>() {{
         add("---"); add("Presencial"); add("On-line");
