@@ -14,23 +14,25 @@ public class Registro1 extends AppCompatActivity {
 
     private ImageButton profesor;
     private ImageButton alumno;
+    private InfoSesion info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        info = new InfoSesion(this);
         setContentView(R.layout.activity_registro1);
         profesor = (ImageButton) findViewById(R.id.imageButton2);
         alumno = (ImageButton) findViewById(R.id.imageButton);
         final Intent i = new Intent(this, Registro2.class);
         profesor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                i.putExtra("persona", 1);
+                info.set(null,1);
                 startActivity(i);
             }
         });
         alumno.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                i.putExtra("persona", 0);
+                info.set(null,0);
                 startActivity(i);
             }
         });

@@ -1,5 +1,6 @@
 package com.example.ivansantamaria.appproffrontend;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,17 +23,22 @@ public class ProfesorDAO {
             String _horarios = respuesta.getString("horarios");
             String[] auxHorarios = _horarios.split(",");
             ArrayList<String> horarios = new ArrayList<>();
-            Collections.addAll(horarios, auxHorarios);
+            for(String tmp:auxHorarios) horarios.add(tmp.replace("[\"","").replace("\"]",""));
 
             String _cursos = respuesta.getString("cursos");
             String[] auxCursos = _cursos.split(",");
             ArrayList<String> cursos = new ArrayList<>();
-            Collections.addAll(cursos, auxCursos);
+            for(String tmp:auxCursos) cursos.add(tmp.replace("[\"","").replace("\"]",""));
 
-            String _asignaturas = respuesta.getString("asignaturas");
-            String[] auxAsignaturas = _asignaturas.split(",");
             ArrayList<String> asignaturas = new ArrayList<>();
-            Collections.addAll(asignaturas, auxCursos);
+            JSONArray _asignaturas = respuesta.getJSONArray("asignaturas");
+            for(int i = 0; i < _asignaturas.length(); i++)
+            {
+                try {
+                    JSONObject jo = _asignaturas.getJSONObject(i);
+                    asignaturas.add(jo.getString("nombre"));
+                } catch (JSONException e){e.printStackTrace();}
+            }
 
             //Double valoracion = respuesta.getDouble("valoracionMedia");
             String experiencia = respuesta.getString("experiencia");
@@ -48,6 +54,10 @@ public class ProfesorDAO {
             ProfesorVO prof = new ProfesorVO();
             return prof;
         }
+    }
+
+    public void profesorPagar(API api) throws APIexception {
+        JSONObject respuesta =  api.get("/api/perfil/info");
     }
 
     public int registro_profesor(API api, ProfesorVO prof) throws APIexception{

@@ -27,20 +27,21 @@ public class Modificar_Perfil_1 extends AppCompatActivity implements MultiSpinne
     private MultiSpinner asignaturas = null;
     private Button siguienteButton = null;
     private JSONObject respuesta;
+    private InfoSesion sesion = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar__perfil_1);
 
-        api = new API("http://10.0.2.2:8080", this);
-        final com.example.ivansantamaria.appproffrontend.Modificar_Perfil_1 local = this;
         siguienteButton = (Button) findViewById(R.id.siguienteMod);
 
-        facade = new Facade();
+        sesion = new InfoSesion(this);
         api = new API("http://10.0.2.2:8080", this);
+        facade = new Facade(api);
         try {
-            profesor = facade.perfilProfesor("prof7");
+            profesor = facade.perfilProfesor(sesion.getUsername());
             populateFields();
         } catch (APIexception ex) { respuesta = ex.json; }
 
@@ -90,7 +91,7 @@ public class Modificar_Perfil_1 extends AppCompatActivity implements MultiSpinne
         if (mail.isEmpty()) return 4;
         else if (!mail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+")) return 5;
         else if (phone.isEmpty()) return 6;
-        else if (!phone.matches("[1-9]{9}")) return 7;
+        else if (!phone.matches("[0-9]{9}")) return 7;
         else if (city.isEmpty()) return 9;
         else if (horariosProf.isEmpty()) return 8;
         else if (asignaturasProf.isEmpty()) return 10;

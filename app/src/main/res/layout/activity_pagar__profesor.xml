@@ -89,8 +89,7 @@
                 <Spinner
                     android:id="@+id/caducidad_mes"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40sp"/>
+                    android:layout_height="wrap_content"/>
                 <Spinner
                     android:id="@+id/caducidad_anyo"
                     android:layout_width="wrap_content"

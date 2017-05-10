@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 public class Modificar_Perfil_2 extends AppCompatActivity implements MultiSpinner.MultiSpinnerListener {
 
+    private TextView user;
     private Facade facade = null;
     private ProfesorVO profesor = null;
     private InfoSesion sesion = null;
@@ -33,13 +35,14 @@ public class Modificar_Perfil_2 extends AppCompatActivity implements MultiSpinne
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar__perfil_2);
 
-        final com.example.ivansantamaria.appproffrontend.Modificar_Perfil_2 local = this;
         confirmarButton = (Button) findViewById(R.id.confirmarMod);
         sesion = new InfoSesion(this);
         api = new API("http://10.0.2.2:8080", this);
         facade = new Facade(api);
-        //profesor = facade.perfilProfesor(sesion.getUsername());
-        populateFields();
+        try {
+            profesor = facade.perfilProfesor(sesion.getUsername());
+            populateFields();
+        } catch (APIexception ex) { respuesta = ex.json; }
         final Intent i = new Intent(this, Perfil_Profesor.class);
         confirmarButton.setOnClickListener(new View.OnClickListener() {
 
@@ -54,6 +57,9 @@ public class Modificar_Perfil_2 extends AppCompatActivity implements MultiSpinne
     }
 
     private void populateFields() {
+
+        user = (TextView) findViewById(R.id.usuarioProfesorMod);
+        user.setText(profesor.getNombreUsuario());
 
         experiencia = (EditText) findViewById(R.id.experienciaProfesorMod);
         experiencia.setText(profesor.getExperiencia());
@@ -75,7 +81,7 @@ public class Modificar_Perfil_2 extends AppCompatActivity implements MultiSpinne
 
     private int guardarEnBd() {
         //Comprobar campos
-        String exp = getIntent().getExtras().getString("profesor_exp");
+        String exp = experiencia.getText().toString();
         if (exp.equals("")) exp = null;
         ArrayList<String> cursosProf = cursos.getValues();
         if (cursosProf.isEmpty()) cursosProf = null;

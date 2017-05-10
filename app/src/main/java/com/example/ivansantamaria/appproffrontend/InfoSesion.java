@@ -47,9 +47,11 @@ public class InfoSesion {
 
     public void set(String _username, int _tipo) {
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("username", _username);
+        if (_username != null) {
+            editor.putString("username", _username);
+            username = _username;
+        }
         editor.putInt("tipo", _tipo);
-        username = _username;
         editor.apply();
 
     }

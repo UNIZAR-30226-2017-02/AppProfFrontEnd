@@ -31,12 +31,13 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
     private Facade facade = null;
     private API api;
     private JSONObject respuesta;
+    private InfoSesion info;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = getIntent().getExtras().getString("profesor_user");
-        InfoSesion info = new InfoSesion(this,user,1);
+        info = new InfoSesion(this);
 
         api = new API("http://10.0.2.2:8080", this);
         facade = new Facade(api);
@@ -52,6 +53,7 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
             public void onClick(View view) {
                 final int code = guardarEnBd();
                 if (code == -1) {
+                    info.set(user,1);
                     startActivity(i);
                 }
                 else error(code);

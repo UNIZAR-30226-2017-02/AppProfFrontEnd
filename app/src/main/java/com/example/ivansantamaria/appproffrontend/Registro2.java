@@ -40,7 +40,7 @@ public class Registro2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         info = new InfoSesion(this);
-        prof = getIntent().getExtras().getInt("persona");
+        prof = info.getTipo();
         if (prof == 1) setContentView(R.layout.activity_registro2_profesor);
         else setContentView(R.layout.activity_registro2_alumno);
         username = (EditText) findViewById(R.id.userName);

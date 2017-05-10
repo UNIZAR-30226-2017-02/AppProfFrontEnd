@@ -22,6 +22,9 @@ public class Pagar_Profesor extends AppCompatActivity {
     private Button pagarButton = null;
     private Spinner mesCad = null;
     private Spinner anyoCad = null;
+    private Facade facade;
+    private API api;
+    private InfoSesion info;
 
     private static final ArrayList<String> mesCadList = new ArrayList<String>()
     {{ add("---"); add("01"); add("02"); add("03"); add("04"); add("05"); add("06"); add("07");
@@ -36,6 +39,9 @@ public class Pagar_Profesor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagar__profesor);
 
+        info = new InfoSesion(this);
+        api = new API("http://10.0.2.2:8080", this);
+        facade = new Facade(api);
         populateFields();
 
         final com.example.ivansantamaria.appproffrontend.Pagar_Profesor local = this;
@@ -65,7 +71,9 @@ public class Pagar_Profesor extends AppCompatActivity {
                                 }
                             });
                 } else {
-                    //PEDIR A LA BASE DE DATOS QUE AÑADE EL DINERO AL PROFESOR
+                    try {
+                        facade.profesorPagar();
+                    } catch (APIexception ex) { System.out.println(ex.getMessage());}
                     finish();
                 }
             }
