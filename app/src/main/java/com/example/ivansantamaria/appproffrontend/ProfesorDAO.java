@@ -96,11 +96,42 @@ public class ProfesorDAO {
     }
 
     public int actualizar_profesor(API api, ProfesorVO prof) throws APIexception{
+        JSONObject payload = new JSONObject();
+        try {
+            payload.put("userName", prof.getNombreUsuario());
+            payload.put("email", prof.getMail());
+            payload.put("telefono", prof.getTelefono());
+            payload.put("ciudad", prof.getCiudad());
+            if (prof.getExperiencia() == null) payload.put("experiencia", "");
+            else payload.put("experiencia", prof.getExperiencia());
+            payload.put("tipo", 1);
+
+            String horarios = "";
+            for (String hor : prof.getHorarios()) horarios += hor + ",";
+            horarios = horarios.substring(0, horarios.length() - 1);
+            payload.put("horarios", horarios);
+
+            String asignaturas = "";
+            for (String asi : prof.getAsignaturas()) asignaturas += asi + ",";
+            asignaturas = asignaturas.substring(0, asignaturas.length() - 1);
+            payload.put("asignaturas", asignaturas);
+
+            if (prof.getCursos() == null) payload.put("cursos", "");
+            else {
+                String cursos = "";
+                for (String cur : prof.getCursos()) cursos += cur + ",";
+                cursos = cursos.substring(0, cursos.length() - 1);
+                payload.put("cursos", cursos);
+            }
+            payload.put("modalidad", prof.getModalidad());
 
 
+        } catch (JSONException ex) {
+            return 10;
+        }
+
+        api.post("/api/perfil/set", payload);
         return -1;
     }
-
-
 
 }
