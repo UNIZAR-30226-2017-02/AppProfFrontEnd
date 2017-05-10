@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSpinnerListener {
 
+    private String password;
     private String user;
     private MultiSpinner horario;
     private MultiSpinner asignaturas;
@@ -37,6 +38,7 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = getIntent().getExtras().getString("profesor_user");
+        password = getIntent().getExtras().getString("profesor_psw");
         info = new InfoSesion(this);
 
         api = new API("http://10.0.2.2:8080", this);
@@ -54,6 +56,9 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
                 final int code = guardarEnBd();
                 if (code == -1) {
                     info.set(user,1);
+                    try {
+                        facade.login(new PersonaVO(user,password),1);
+                    } catch (APIexception ex) {}
                     startActivity(i);
                 }
                 else error(code);
@@ -79,11 +84,9 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
         else if (horariosProf.isEmpty()) return 1;
         else if (asignaturasProf.isEmpty()) return 2;
 
-        facade = new Facade(api);
         try {
             return facade.registro_profesor(new ProfesorVO(
-                    user, getIntent().getExtras().getString("profesor_psw"),
-                    getIntent().getExtras().getString("profesor_tlf"),
+                    user, password, getIntent().getExtras().getString("profesor_tlf"),
                     getIntent().getExtras().getString("profesor_mail"),
                     getIntent().getExtras().getString("profesor_ciu"),
                     horariosProf,cursosProf,asignaturasProf,-1.00, exp, modulo));

@@ -19,6 +19,8 @@ import org.json.JSONObject;
 
 public class Registro2 extends AppCompatActivity {
 
+    private String usrAl;
+    private String pswAl;
     private Facade facade;
     private EditText username;
     private EditText password;
@@ -68,6 +70,9 @@ public class Registro2 extends AppCompatActivity {
                     final int code = guardarEnBdAl();
                     if (code == -1) {
                         info.set(user,0);
+                        try {
+                            facade.login(new PersonaVO(usrAl,pswAl),0);
+                        } catch (APIexception ex) {}
                         startActivity(i);
                     }
                     else error(code);
@@ -80,7 +85,7 @@ public class Registro2 extends AppCompatActivity {
 
     private int guardarEnBdProf(final Intent i) {
         String usr = username.getText().toString();
-        String user = usr;
+        user = usr;
         String psw = password.getText().toString();
         String cpsw = confirmPassword.getText().toString();
         String mail = email.getText().toString();
@@ -119,6 +124,8 @@ public class Registro2 extends AppCompatActivity {
         CheckBox tyc = (CheckBox) findViewById(R.id.TyC);
         if (!tyc.isChecked()) return 8;
 
+        usrAl = usr;
+        pswAl = psw;
         facade = new Facade(api);
         try {
             return facade.registro_alumno(new AlumnoVO(usr,psw));
