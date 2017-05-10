@@ -2,6 +2,10 @@ package com.example.ivansantamaria.appproffrontend;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ProfesorVO extends PersonaVO{
 
     private String telefono = null;
@@ -31,6 +35,42 @@ public class ProfesorVO extends PersonaVO{
         if (experiencia != null) this.experiencia = experiencia;
         if (modalidad != null) this.modalidad = modalidad;
 
+    }
+
+    public ProfesorVO (JSONObject jsonObject) {
+        try {
+            if (jsonObject.has("nombre")) super.nombreUsuario = jsonObject.getString("nombre");
+            if (jsonObject.has("password")) super.password = jsonObject.getString("password");
+            if (jsonObject.has("telefono")) this.telefono = jsonObject.getString("telefono");
+            if (jsonObject.has("mail")) this.mail = jsonObject.getString("mail");
+            if (jsonObject.has("ciudad")) this.ciudad = jsonObject.getString("ciudad");
+            if (jsonObject.has("horarios")) {
+                horarios = new ArrayList<>();
+                JSONArray jArray = jsonObject.getJSONArray("horarios");
+                for (int i = 0; i < jArray.length(); i++) {
+                    horarios.add(jArray.getString(i));
+                }
+            }
+            if (jsonObject.has("cursos")) {
+                cursos = new ArrayList<>();
+                JSONArray jArray = jsonObject.getJSONArray("cursos");
+                for (int i = 0; i < jArray.length(); i++) {
+                    cursos.add(jArray.getString(i));
+                }
+            }
+            if (jsonObject.has("asignaturas")) {
+                asignaturas = new ArrayList<>();
+                JSONArray jArray = jsonObject.getJSONArray("asignaturas");
+                for (int i = 0; i < jArray.length(); i++) {
+                    asignaturas.add(jArray.getString(i));
+                }
+            }
+            if (jsonObject.has("valoracion")) this.valoracion = jsonObject.getDouble("valoracion");
+            if (jsonObject.has("experiencia")) this.experiencia = jsonObject.getString("experiencia");
+            if (jsonObject.has("modalidad")) this.modalidad = jsonObject.getString("modalidad");
+
+
+        } catch (JSONException e) {e.printStackTrace();}
     }
 
     public String getNombreUsuario() {
