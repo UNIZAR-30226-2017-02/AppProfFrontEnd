@@ -6,8 +6,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.StringTokenizer;
 
 public class Facade {
 
@@ -51,9 +49,8 @@ public class Facade {
     }
 
     public int actualizar_profesor(ProfesorVO prof) throws APIexception {
-      /*  ProfesorDAO profesorDAO = new ProfesorDAO();
-        return profesorDAO.actualizar_profesor(api, prof);*/
-      return 0;
+        ProfesorDAO profesorDAO = new ProfesorDAO();
+        return profesorDAO.actualizar_profesor(api, prof);
     }
 
     public JSONObject login(PersonaVO per, int tipo) throws APIexception{
