@@ -63,7 +63,6 @@ public class Perfil_Profesor extends AppCompatActivity {
         facade = new Facade(api);
         try {
             profesor = facade.perfilProfesor(info.getUsername());
-            System.out.println("Telefono: " + profesor.getTelefono());
             populateFields();
         } catch (APIexception ex) { respuesta = ex.json; }
 

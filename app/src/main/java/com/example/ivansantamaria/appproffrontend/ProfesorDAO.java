@@ -4,56 +4,50 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ProfesorDAO {
 
     public ProfesorVO perfilProfesor(API api, String profesor) throws APIexception {
 
         JSONObject respuesta =  api.get("/api/perfil/info");
-        System.out.println("Entra: ");
         try {
             // cursos (se puede pasar como cadena vacía) modalidad y experiencia son opcionales
             // (cursos ponerlo a null). Modalidad (tres rayas) experiencia como cadena vacía
             String telefono = respuesta.getString("telefono");
-
-            System.out.println("Telefono: " + telefono);
-
             String mail = respuesta.getString("email");
             String ciudad = respuesta.getString("ciudad");
+
             // Pasar el string a ArrayList<String> según el token
             String _horarios = respuesta.getString("horarios");
-            ArrayList<String> horarios = null;
+            String[] auxHorarios = _horarios.split(",");
+            ArrayList<String> horarios = new ArrayList<>();
+            Collections.addAll(horarios, auxHorarios);
 
-            // Pasar el string a ArrayList<String> según el token
             String _cursos = respuesta.getString("cursos");
-            ArrayList<String> cursos = null;
-            if (_cursos.equals("")) {
-                _cursos = null;
-            } else {
-                // Lo pasamos a ArrayList
-
-            }
+            String[] auxCursos = _cursos.split(",");
+            ArrayList<String> cursos = new ArrayList<>();
+            Collections.addAll(cursos, auxCursos);
 
             String _asignaturas = respuesta.getString("asignaturas");
-            // Lo pasamos a ArrayList
-            ArrayList<String> asignaturas = null;
+            String[] auxAsignaturas = _asignaturas.split(",");
+            ArrayList<String> asignaturas = new ArrayList<>();
+            Collections.addAll(asignaturas, auxCursos);
 
-            Double valoracion = respuesta.getDouble("valoracionMedia");
+            //Double valoracion = respuesta.getDouble("valoracionMedia");
             String experiencia = respuesta.getString("experiencia");
 
             String modalidad = respuesta.getString("modalidad");
-            if (modalidad.equals("")) {
-                modalidad = null;
-            }
 
             ProfesorVO prof = new ProfesorVO(profesor, null, telefono, mail, ciudad, horarios, cursos,
-                    asignaturas, valoracion, experiencia, modalidad);
+                    asignaturas, -1.00, experiencia, modalidad);
 
             return prof;
 
-        } catch (JSONException e) { }
-
-        return null;
+        } catch (JSONException e) {
+            ProfesorVO prof = new ProfesorVO();
+            return prof;
+        }
     }
 
     public int registro_profesor(API api, ProfesorVO prof) throws APIexception{

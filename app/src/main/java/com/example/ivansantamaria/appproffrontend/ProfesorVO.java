@@ -1,10 +1,10 @@
 package com.example.ivansantamaria.appproffrontend;
 
-import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class ProfesorVO extends PersonaVO{
 
@@ -18,6 +18,7 @@ public class ProfesorVO extends PersonaVO{
     private String experiencia = null;
     private String modalidad = null;
 
+    public ProfesorVO() { }
     public ProfesorVO (String nombreUsuario, String password, String telefono, String mail, String ciudad,
                        ArrayList<String> horarios, ArrayList<String> cursos,
                        ArrayList<String> asignaturas, Double valoracion, String experiencia,
