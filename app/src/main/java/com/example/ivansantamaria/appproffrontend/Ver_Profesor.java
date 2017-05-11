@@ -1,5 +1,6 @@
 package com.example.ivansantamaria.appproffrontend;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 
 public class Ver_Profesor extends AppCompatActivity {
@@ -38,13 +41,27 @@ public class Ver_Profesor extends AppCompatActivity {
     private Facade facade = null;
     private ProfesorVO profesor = null;
 
+    private JSONObject respuesta;
+    private API api;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_profesor);
 
-        facade = new Facade();
-        //profesor = facade.perfilProfesor(" Isak");
+        Intent intent = getIntent();
+
+        // Devuelve el nombre del profesor no el userName
+        String buscarProfesor = intent.getStringExtra("nombreUsuario");
+
+        InfoSesion info = new InfoSesion(this);
+        api = new API("http://10.0.2.2:8080", this);
+        facade = new Facade(api);
+        try {
+            profesor = facade.verProfesor(buscarProfesor);
+            populateFields();
+        } catch (APIexception ex) { respuesta = ex.json; }
+
         populateFields();
 
         // Listeners barra de Rating y botón de enviar la valoración

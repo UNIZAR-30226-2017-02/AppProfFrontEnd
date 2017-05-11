@@ -34,6 +34,11 @@ public class Facade {
         return profesorDAO.perfilProfesor(api, profesor);
     }
 
+    public ProfesorVO verProfesor(String profesor) throws APIexception {
+        ProfesorDAO profesorDAO = new ProfesorDAO();
+        return profesorDAO.verProfesor(api, profesor);
+    }
+
     public void profesorPagar() throws APIexception{
         ProfesorDAO profesorDAO = new ProfesorDAO();
         profesorDAO.profesorPagar(api);
