@@ -59,13 +59,13 @@ public class ProfesorDAO {
 
         JSONObject payload = new JSONObject();
         try {
-            payload.put("nombre", profesor);
+            payload.put("profesor", profesor);
         } catch (JSONException ex) {
             ProfesorVO prof = new ProfesorVO();
             return prof;
         }
 
-        JSONObject respuesta =  api.post("/api/perfil/get", payload);
+        JSONObject respuesta =  api.post("/api/perfil/profesor", payload);
         try {
             // cursos (se puede pasar como cadena vacía) modalidad y experiencia son opcionales
             // (cursos ponerlo a null). Modalidad (tres rayas) experiencia como cadena vacía

@@ -101,7 +101,7 @@ public class API
         	this.token = jObject.getString("token");
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("token", this.token);
-            editor.apply();
+            editor.commit();
         } catch (JSONException ex) {}
         return jObject;
 	}
@@ -234,7 +234,7 @@ public class API
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("token", this.token);
             editor.putInt("tipo", tipo);
-            editor.apply();
+            editor.commit();
         } catch (JSONException ex) {}
 
         return jObject;

@@ -26,6 +26,8 @@ public class Listar_Profesores extends AppCompatActivity {
     private ArrayList<String> asignaturas;
     private ArrayList<String> cursos;
 
+    private ArrayList<String> userNames;
+
     private ListView listView;
     private ArrayList<ProfesorVO> m_profesores;
 
@@ -57,7 +59,8 @@ public class Listar_Profesores extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView c = (TextView) view.findViewById(R.id.nombreProfesorListar);
-                profesor = c.getText().toString();
+                //profesor = c.getText().toString();
+                profesor = userNames.get(position);
                 verProfesor();
             }
         });
@@ -74,6 +77,7 @@ public class Listar_Profesores extends AppCompatActivity {
         m_profesores = getData();//Facade.buscarProfesores(nombre,ciudad, horario, asignatura, curso);
         //m_profesores.add(facade.perfilProfesor("David"));
         //m_profesores.add(facade.perfilProfesor("Fuste"));
+
         // Si no existen profesores se muestra mensaje
         if (m_profesores.isEmpty()){
             TextView empty = (TextView)findViewById(R.id.empty);
@@ -122,6 +126,7 @@ public class Listar_Profesores extends AppCompatActivity {
         API api = new API("http://10.0.2.2:8080",this);
         JSONObject jsonPost = new JSONObject();
         ArrayList<ProfesorVO> list = new ArrayList<>();
+        userNames = new ArrayList<>();
         try{
             jsonPost.put("nombre",nombre);
             jsonPost.put("ciudad",ciudad);
@@ -132,6 +137,7 @@ public class Listar_Profesores extends AppCompatActivity {
                 JSONArray jArray = api.postArray("/api/busqueda", jsonPost);
                 for (int i=0; i < jArray.length(); i++) {
                     JSONObject jaux = jArray.getJSONObject(i);
+                    userNames.add(jaux.getString("userName"));
                     list.add(new ProfesorVO(jaux));
                 }
             } catch (APIexception epi) {epi.printStackTrace();}

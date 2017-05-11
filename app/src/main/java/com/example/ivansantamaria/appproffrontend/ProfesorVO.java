@@ -63,7 +63,7 @@ public class ProfesorVO extends PersonaVO{
                 asignaturas = new ArrayList<>();
                 JSONArray jArray = jsonObject.getJSONArray("asignaturas");
                 for (int i = 0; i < jArray.length(); i++) {
-                    asignaturas.add(jArray.getString(i));
+                    asignaturas.add(jArray.getJSONObject(i).getString("nombre"));
                 }
             }
             if (jsonObject.has("valoracion")) this.valoracion = jsonObject.getDouble("valoracion");
