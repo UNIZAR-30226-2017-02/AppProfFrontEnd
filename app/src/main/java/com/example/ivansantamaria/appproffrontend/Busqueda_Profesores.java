@@ -45,10 +45,12 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
         //nombreUsuario = (extras != null) ? extras.getString("nombreUsuario") : null;
 
         populatefields();
-
+//        final Intent i = new Intent(this, Ver_Profesor.class);
+//        i.putExtra("nombreUsuario", "profesor2");
         buscarProfesor.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
+                //startActivity(i);
                 if(nombre.getText().toString().equals("") &&
                         ciudad.getText().toString().equals("") &&
                         horarios.getValues().equals("") &&

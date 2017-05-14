@@ -115,4 +115,9 @@ public class Facade {
     public ArrayList<String> getModalidadesDisponibles() {
         return modalidadesDisponibles;
     }
+
+    public void anyadir_profesor_favorito(ProfesorVO profesor) throws APIexception {
+        AlumnoDAO alumnoDAO = new AlumnoDAO();
+        alumnoDAO.anyadir_profesor_favorito(api, profesor);
+    }
 }

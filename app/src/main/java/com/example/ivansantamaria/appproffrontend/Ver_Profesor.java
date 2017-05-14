@@ -85,10 +85,15 @@ public class Ver_Profesor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Falta anyadir a la base de datos
-                Toast.makeText(Ver_Profesor.this, "Profesor" + user.getText() +
-                        " añadido a favoritos",
-                        Toast.LENGTH_SHORT).show();
-
+                Facade facade = new Facade(api);
+                try {
+                    facade.anyadir_profesor_favorito(profesor);
+                    Toast.makeText(Ver_Profesor.this, "Profesor" + user.getText() +
+                                    " añadido a favoritos",
+                            Toast.LENGTH_SHORT).show();
+                } catch (APIexception apIexception) {
+                    apIexception.printStackTrace();
+                }
             }
 
         });
