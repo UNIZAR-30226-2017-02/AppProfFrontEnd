@@ -40,7 +40,7 @@ public class ProfesorVO extends PersonaVO{
 
     public ProfesorVO (JSONObject jsonObject) {
         try {
-            if (jsonObject.has("nombre")) super.nombreUsuario = jsonObject.getString("nombre");
+            if (jsonObject.has("userName")) super.nombreUsuario = jsonObject.getString("userName");
             if (jsonObject.has("password")) super.password = jsonObject.getString("password");
             if (jsonObject.has("telefono")) this.telefono = jsonObject.getString("telefono");
             if (jsonObject.has("mail")) this.mail = jsonObject.getString("mail");

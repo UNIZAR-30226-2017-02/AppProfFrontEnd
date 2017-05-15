@@ -99,6 +99,12 @@ public class Listar_Profesores extends AppCompatActivity {
             // Se añaden los profesores encontrados al cursor
             for (int i = 0; i < m_profesores.size(); i++) {
                 ProfesorVO p = m_profesores.get(i);
+                if (p.getValoracion() < 0.0){
+                    p.setValoracion(0.0);
+                }
+                //p.setAsignaturas(asignaturasMostrar(p));
+                //p.setHorarios(horariosMostrar(p));
+
                 profesorCursor.addRow(new Object[]{i, p.getNombreUsuario(), p.getCiudad(),
                         p.getAsignaturas(), p.getHorarios(), p.getValoracion()});
             }
@@ -143,6 +149,67 @@ public class Listar_Profesores extends AppCompatActivity {
             } catch (APIexception epi) {epi.printStackTrace();}
         } catch (JSONException e){e.printStackTrace();}
         return list;
+    }
+
+    private ArrayList<String> asignaturasMostrar(ProfesorVO p){
+        ArrayList<String> asignaturasprof = new ArrayList<>();
+        if (asignaturas.size() >= 2){
+            // Si se buscaron mas de 2 se muestran
+            asignaturasprof.add(asignaturas.get(1));
+            asignaturasprof.add(asignaturas.get(2));
+        } else if (asignaturas.size() == 1){
+            // Si se busco 1 se muestra
+            asignaturasprof.add(asignaturas.get(1));
+            if (p.getAsignaturas().size() > 1){
+                // Si se busco 1 y tiene mas de 1 se busca uno diferente para mostrar
+                if (!p.getAsignaturas().get(1).equals((asignaturas.get(1)))){
+                    asignaturasprof.add(p.getAsignaturas().get(1));
+                } else {
+                    asignaturasprof.add(p.getAsignaturas().get(2));
+                }
+            }
+        } else {
+            // Si no se busco ninguno se añaden maximo 2
+            asignaturasprof = p.getAsignaturas();
+            if (p.getAsignaturas().size() <= 2){
+                asignaturasprof = p.getCursos();
+            } else {
+                asignaturasprof.add(p.getAsignaturas().get(1));
+                asignaturasprof.add(p.getAsignaturas().get(2));
+            }
+            asignaturasprof = p.getAsignaturas();
+        }
+        return asignaturasprof;
+    }
+
+    private ArrayList<String> horariosMostrar(ProfesorVO p){
+        ArrayList<String> horariosprof = new ArrayList<>();
+        if (horarios.size() >= 2){
+            // Si se buscaron mas de 2 se muestran
+            horariosprof.add(horarios.get(1));
+            horariosprof.add(horarios.get(2));
+        } else if (horarios.size() == 1){
+            // Si se busco 1 se muestra
+            horariosprof.add(horarios.get(1));
+            if (p.getHorarios().size() > 1){
+                // Si se busco 1 y tiene mas de 1 se busca uno diferente para mostrar
+                if (!p.getHorarios().get(1).equals((horarios.get(1)))){
+                    horariosprof.add(p.getHorarios().get(1));
+                } else {
+                    horariosprof.add(p.getHorarios().get(2));
+                }
+            }
+        } else {
+            // Si no se busco ninguno se añaden maximo 2
+            if (p.getHorarios().size() <= 2){
+                horariosprof = p.getHorarios();
+            } else {
+                horariosprof.add(p.getHorarios().get(1));
+                horariosprof.add(p.getHorarios().get(2));
+            }
+            horariosprof = p.getHorarios();
+        }
+        return horariosprof;
     }
 
 }
