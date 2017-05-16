@@ -130,7 +130,7 @@ public class ProfesorDAO {
             System.out.println(ex);
         }
 
-        JSONObject respuesta =  api.post("api/valoraciones/valorar", payload);
+        JSONObject respuesta =  api.post("/api/valoraciones/valorar", payload);
 
         System.out.println("Llega");
 
