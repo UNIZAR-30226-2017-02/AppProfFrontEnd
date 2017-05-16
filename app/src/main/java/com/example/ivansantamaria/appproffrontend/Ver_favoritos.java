@@ -22,6 +22,8 @@ public class Ver_favoritos extends AppCompatActivity {
     private ListView listView;
     private ArrayList<ProfesorVO> m_profesores;
 
+    private API api;
+
     /** identificador para la actividad de ver profesor seleccionado */
     private static final int ACTIVITY_VER_PROFESOR=0;
 
@@ -30,6 +32,7 @@ public class Ver_favoritos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar__profesores);
 
+        api = new API("http://10.0.2.2:8080", this);
         listView = (ListView) findViewById(R.id.list);
 
         // Recogemos los datos para realizar la busqueda
@@ -41,7 +44,11 @@ public class Ver_favoritos extends AppCompatActivity {
         // Horario, asignatura y curso si no han sido rellenados -> "---"
         asignatura = (extras != null) ? extras.getStringArrayList("asignatura") : null;
 
-        fillData();
+        try {
+            fillData();
+        } catch (APIexception apIexception) {
+            apIexception.printStackTrace();
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -57,11 +64,11 @@ public class Ver_favoritos extends AppCompatActivity {
     /**
      * Rellena la lista de notas con la información de la base de datos.
      */
-    private void fillData() {
+    private void fillData() throws APIexception {
         // Acceso a la base de datos
-        Facade facade = new Facade();
+        Facade facade = new Facade(api);
         //Buscamos los profesores
-        m_profesores = new ArrayList<>();//Facade.buscarProfesores(nombre,ciudad, horario, asignatura, curso);
+        m_profesores = facade.getProfesoresFavoritos(); //Facade.buscarProfesores(nombre,ciudad, horario, asignatura, curso);
         //m_profesores.add(facade.perfilProfesor("David"));
         //m_profesores.add(facade.perfilProfesor("Fuste"));
         // Si no existen profesores se muestra mensaje

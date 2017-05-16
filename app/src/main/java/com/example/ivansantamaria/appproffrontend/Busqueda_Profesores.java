@@ -17,6 +17,8 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
 
     //private String nombreUsuario;
 
+
+    private API api;
     private EditText nombre;
     private EditText ciudad;
     private MultiSpinner horarios;
@@ -36,6 +38,7 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda__profesores);
 
+        api = new API("http://10.0.2.2:8080", this);
         final com.example.ivansantamaria.appproffrontend.Busqueda_Profesores local = this;
         buscarProfesor = (Button) findViewById(R.id.buscarProfesor);
         favoritoProfesor = (Button) findViewById(R.id.favoritoProfesor);
@@ -87,7 +90,7 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
     }
 
     private void populatefields(){
-        Facade facade = new Facade(new API("http://10.0.2.2:8080", this));
+        Facade facade = new Facade(api);
         nombre = (EditText) findViewById(R.id.usuarioProfesorBusqueda);
         ciudad = (EditText) findViewById(R.id.ciudadProfesorBusqueda);
 
@@ -105,7 +108,7 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
     }
 
     private void listar_favoritos(){
-        Intent i = new Intent(this, Listar_Profesores.class); //Profesores_Favoritos.class);
+        Intent i = new Intent(this, Ver_favoritos.class); //Profesores_Favoritos.class);
         //i.putExtra("nombreUsuario", nombreUsuario);
         startActivityForResult(i, ACTIVITY_LISTAR_FAVORITOS);
     }

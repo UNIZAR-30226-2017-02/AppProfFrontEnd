@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
@@ -119,5 +120,26 @@ public class Facade {
     public void anyadir_profesor_favorito(ProfesorVO profesor) throws APIexception {
         AlumnoDAO alumnoDAO = new AlumnoDAO();
         alumnoDAO.anyadir_profesor_favorito(api, profesor);
+    }
+
+    public ArrayList<ProfesorVO> getProfesoresFavoritos() throws APIexception {
+        ArrayList<ProfesorVO> lista = new ArrayList<ProfesorVO>();
+        ProfesorVO profesorVO = null;
+        try {
+            JSONArray array =  api.getArray("/api/favoritos/get");
+
+            for (int i = 0; i < array.length(); i++) {
+                try {
+                    JSONObject jsonObject = array.getJSONObject(i);
+                    if (jsonObject != null) {
+                        String nombre = jsonObject.getString("userName");
+                        lista.add(this.verProfesor(nombre));
+                    }
+                } catch (JSONException e) { e.printStackTrace(); }
+            }
+        } catch (APIexception e) {
+            e.printStackTrace();
+        }
+        return (new ArrayList<>( new LinkedHashSet<>(lista)));
     }
 }

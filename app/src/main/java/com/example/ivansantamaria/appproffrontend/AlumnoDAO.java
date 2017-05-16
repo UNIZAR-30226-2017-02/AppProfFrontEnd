@@ -51,23 +51,4 @@ public class AlumnoDAO {
         api.post("/api/favoritos/add", payload);
     }
 
-    public ArrayList<ProfesorVO> getProfesoresFavoritos(API api) throws APIexception {
-        ArrayList<ProfesorVO> lista = new ArrayList<ProfesorVO>();
-        try {
-            JSONArray array =  api.getArray("/api/favoritos/get");
-
-            for (int i = 0; i < array.length(); i++) {
-                try {
-                    JSONObject jsonObject = array.getJSONObject(i);
-                    String nombre = jsonObject.getString("userName");
-                    Facade facade = new Facade(api);
-                    lista.add(facade.perfilProfesor(nombre));
-                } catch (JSONException e) { e.printStackTrace(); }
-            }
-        } catch (APIexception e) {
-            e.printStackTrace();
-        }
-        return (new ArrayList<>( new LinkedHashSet<>(lista)));
-    }
-
 }
