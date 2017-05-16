@@ -39,13 +39,13 @@ public class ProfesorDAO {
                 } catch (JSONException e){e.printStackTrace();}
             }
 
-            //Double valoracion = respuesta.getDouble("valoracionMedia");
+            Double valoracion = respuesta.getDouble("valoracionMedia");
             String experiencia = respuesta.getString("experiencia");
 
             String modalidad = respuesta.getString("modalidad");
 
             ProfesorVO prof = new ProfesorVO(profesor, null, telefono, mail, ciudad, horarios, cursos,
-                    asignaturas, -1.00, experiencia, modalidad);
+                    asignaturas, valoracion, experiencia, modalidad);
 
             return prof;
 
@@ -72,6 +72,7 @@ public class ProfesorDAO {
             String telefono = respuesta.getString("telefono");
             String mail = respuesta.getString("email");
             String ciudad = respuesta.getString("ciudad");
+            String profesorID = respuesta.getString("_id");
 
             // Pasar el string a ArrayList<String> según el token
             String _horarios = respuesta.getString("horarios");
@@ -94,13 +95,13 @@ public class ProfesorDAO {
                 } catch (JSONException e){e.printStackTrace();}
             }
 
-            //Double valoracion = respuesta.getDouble("valoracionMedia");
+            Double valoracion = respuesta.getDouble("valoracionMedia");
             String experiencia = respuesta.getString("experiencia");
 
             String modalidad = respuesta.getString("modalidad");
 
-            ProfesorVO prof = new ProfesorVO(profesor, null, telefono, mail, ciudad, horarios, cursos,
-                    asignaturas, -1.00, experiencia, modalidad);
+            ProfesorVO prof = new ProfesorVO(profesorID, profesor, null, telefono, mail, ciudad,
+                    horarios, cursos, asignaturas, valoracion, experiencia, modalidad);
 
             return prof;
 
@@ -110,6 +111,31 @@ public class ProfesorDAO {
         }
     }
 
+
+    public void enviarValoracion(API api, String profesor, String alumno, float valoracion)
+            throws APIexception {
+
+        // Hay que enviar profesorID alumnoID puntuacion
+        JSONObject payload = new JSONObject();
+        try {
+            // Cogemos el ID del alumno
+            JSONObject respAlumno = api.get("/api/perfil/info");
+            String alumnoID = respAlumno.getString("_id");
+
+            payload.put("profesorID", profesor);
+            payload.put("alumnoID", alumnoID);
+            payload.put("puntuacion", valoracion);
+
+        } catch (JSONException ex) {
+            System.out.println(ex);
+        }
+
+        JSONObject respuesta =  api.post("/api/valoraciones/valorar", payload);
+
+        System.out.println("Llega");
+
+
+    }
 
     public void profesorPagar(API api) throws APIexception {
         JSONObject respuesta =  api.get("/api/perfil/info");

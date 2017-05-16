@@ -17,6 +17,7 @@ public class ProfesorVO extends PersonaVO{
     private Double valoracion = -1.00;
     private String experiencia = null;
     private String modalidad = null;
+    private String id = null;
 
     public ProfesorVO() { }
     public ProfesorVO (String nombreUsuario, String password, String telefono, String mail, String ciudad,
@@ -24,6 +25,26 @@ public class ProfesorVO extends PersonaVO{
                        ArrayList<String> asignaturas, Double valoracion, String experiencia,
                        String modalidad) {
 
+        if (nombreUsuario != null) super.nombreUsuario = nombreUsuario;
+        if (password != null) super.password = password;
+        if (telefono != null) this.telefono = telefono;
+        if (mail != null) this.mail = mail;
+        if (ciudad != null) this.ciudad = ciudad;
+        if (horarios != null) this.horarios = horarios;
+        if (cursos != null) this.cursos = cursos;
+        if (asignaturas != null) this.asignaturas = asignaturas;
+        if (valoracion != -1.0f) this.valoracion = valoracion;
+        if (experiencia != null) this.experiencia = experiencia;
+        if (modalidad != null) this.modalidad = modalidad;
+
+    }
+
+    public ProfesorVO (String id, String nombreUsuario, String password, String telefono, String mail, String ciudad,
+                       ArrayList<String> horarios, ArrayList<String> cursos,
+                       ArrayList<String> asignaturas, Double valoracion, String experiencia,
+                       String modalidad) {
+
+        if (id != null) this.id = id;
         if (nombreUsuario != null) super.nombreUsuario = nombreUsuario;
         if (password != null) super.password = password;
         if (telefono != null) this.telefono = telefono;
@@ -72,6 +93,13 @@ public class ProfesorVO extends PersonaVO{
 
 
         } catch (JSONException e) {e.printStackTrace();}
+    }
+
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombreUsuario() {

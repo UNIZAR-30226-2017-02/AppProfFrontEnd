@@ -44,6 +44,10 @@ public class Ver_Profesor extends AppCompatActivity {
     private JSONObject respuesta;
     private API api;
 
+    private String buscarProfesor;
+
+    private InfoSesion info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +56,9 @@ public class Ver_Profesor extends AppCompatActivity {
         Intent intent = getIntent();
 
         // Devuelve el nombre del profesor no el userName
-        String buscarProfesor = intent.getStringExtra("nombreUsuario");
+        buscarProfesor = intent.getStringExtra("nombreUsuario");
 
-        InfoSesion info = new InfoSesion(this);
+        info = new InfoSesion(this);
         api = new API("http://10.0.2.2:8080", this);
         facade = new Facade(api);
         try {
@@ -131,10 +135,14 @@ public class Ver_Profesor extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
                 Toast.makeText(Ver_Profesor.this,
                         String.valueOf("Valoración enviada " + barraValoracion.getRating()),
                         Toast.LENGTH_SHORT).show();
+                // Enviar valoración a la base de datos
+                try {
+                    facade.enviarValoracion(profesor.getId(), info.getUsername(), barraValoracion.getRating());
+                } catch (APIexception ex) { respuesta = ex.json; }
+
 
             }
 
