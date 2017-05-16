@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -135,14 +136,19 @@ public class Ver_Profesor extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(Ver_Profesor.this,
-                        String.valueOf("Valoración enviada " + barraValoracion.getRating()),
-                        Toast.LENGTH_SHORT).show();
+                String msg = "Error al enviar valoracion";
+
                 // Enviar valoración a la base de datos
                 try {
-                    facade.enviarValoracion(profesor.getId(), info.getUsername(), barraValoracion.getRating());
+                    JSONObject respuesta = facade.enviarValoracion(profesor.getId(), info.getUsername(), barraValoracion.getRating());
+                    try {
+                        msg = respuesta.getString("message");
+                    } catch (JSONException jex) {System.out.println(jex);}
                 } catch (APIexception ex) { respuesta = ex.json; }
 
+                Toast.makeText(Ver_Profesor.this,
+                        String.valueOf(msg),
+                        Toast.LENGTH_SHORT).show();
 
             }
 

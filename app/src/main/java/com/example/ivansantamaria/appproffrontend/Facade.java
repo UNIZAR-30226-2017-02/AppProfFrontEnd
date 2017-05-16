@@ -45,10 +45,10 @@ public class Facade {
         profesorDAO.profesorPagar(api);
     }
 
-    public void enviarValoracion(String profesorID, String alumno, float valoracion)
+    public JSONObject enviarValoracion(String profesorID, String alumno, float valoracion)
             throws APIexception {
         ProfesorDAO profesorDAO = new ProfesorDAO();
-        profesorDAO.enviarValoracion(api, profesorID, alumno, valoracion);
+        return profesorDAO.enviarValoracion(api, profesorID, alumno, valoracion);
     }
 
     public int registro_alumno(AlumnoVO alum) throws APIexception{

@@ -61,6 +61,7 @@ public class ProfesorVO extends PersonaVO{
 
     public ProfesorVO (JSONObject jsonObject) {
         try {
+            if (jsonObject.has("_id")) this.id = jsonObject.getString("_id");
             if (jsonObject.has("userName")) super.nombreUsuario = jsonObject.getString("userName");
             if (jsonObject.has("password")) super.password = jsonObject.getString("password");
             if (jsonObject.has("telefono")) this.telefono = jsonObject.getString("telefono");
@@ -87,7 +88,7 @@ public class ProfesorVO extends PersonaVO{
                     asignaturas.add(jArray.getJSONObject(i).getString("nombre"));
                 }
             }
-            if (jsonObject.has("valoracion")) this.valoracion = jsonObject.getDouble("valoracion");
+            if (jsonObject.has("valoracionMedia")) this.valoracion = jsonObject.getDouble("valoracionMedia");
             if (jsonObject.has("experiencia")) this.experiencia = jsonObject.getString("experiencia");
             if (jsonObject.has("modalidad")) this.modalidad = jsonObject.getString("modalidad");
 

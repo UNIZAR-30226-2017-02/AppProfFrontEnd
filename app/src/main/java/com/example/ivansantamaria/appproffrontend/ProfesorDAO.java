@@ -112,7 +112,7 @@ public class ProfesorDAO {
     }
 
 
-    public void enviarValoracion(API api, String profesor, String alumno, float valoracion)
+    public JSONObject enviarValoracion(API api, String profesor, String alumno, float valoracion)
             throws APIexception {
 
         // Hay que enviar profesorID alumnoID puntuacion
@@ -133,8 +133,7 @@ public class ProfesorDAO {
         JSONObject respuesta =  api.post("/api/valoraciones/valorar", payload);
 
         System.out.println("Llega");
-
-
+        return respuesta;
     }
 
     public void profesorPagar(API api) throws APIexception {
