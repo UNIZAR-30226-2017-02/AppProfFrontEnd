@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -102,6 +104,8 @@ public class Listar_Profesores extends AppCompatActivity {
                 if (p.getValoracion() < 0.0){
                     p.setValoracion(0.0);
                 }
+
+                p.setValoracion((round(p.getValoracion(),2)));
                 //p.setAsignaturas(asignaturasMostrar(p));
                 //p.setHorarios(horariosMostrar(p));
 
@@ -210,6 +214,14 @@ public class Listar_Profesores extends AppCompatActivity {
             horariosprof = p.getHorarios();
         }
         return horariosprof;
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
 }
