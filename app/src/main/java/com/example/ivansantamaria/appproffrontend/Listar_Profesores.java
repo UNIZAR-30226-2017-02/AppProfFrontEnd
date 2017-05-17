@@ -176,12 +176,11 @@ public class Listar_Profesores extends AppCompatActivity {
             // Si no se busco ninguno se añaden maximo 2
             asignaturasprof = p.getAsignaturas();
             if (p.getAsignaturas().size() <= 2){
-                asignaturasprof = p.getCursos();
+                asignaturasprof = p.getAsignaturas();
             } else {
                 asignaturasprof.add(p.getAsignaturas().get(1));
                 asignaturasprof.add(p.getAsignaturas().get(2));
             }
-            asignaturasprof = p.getAsignaturas();
         }
         return asignaturasprof;
     }
@@ -211,7 +210,6 @@ public class Listar_Profesores extends AppCompatActivity {
                 horariosprof.add(p.getHorarios().get(1));
                 horariosprof.add(p.getHorarios().get(2));
             }
-            horariosprof = p.getHorarios();
         }
         return horariosprof;
     }
