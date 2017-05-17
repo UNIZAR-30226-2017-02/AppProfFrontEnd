@@ -16,6 +16,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 public class Ver_Profesor extends AppCompatActivity {
 
@@ -28,7 +30,8 @@ public class Ver_Profesor extends AppCompatActivity {
     private TextView email;
     private TextView telefono;
     private TextView modalidad;
-    private TextView valoracionMedia;
+    private RatingBar rat;
+    private ArrayList<ProfesorVO> m_profesores;
 
     private RatingBar barraValoracion;
     // Quitar texto que sale después de la valoración
@@ -89,13 +92,21 @@ public class Ver_Profesor extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // Falta anyadir a la base de datos
                 Facade facade = new Facade(api);
                 try {
-                    facade.anyadir_profesor_favorito(profesor);
-                    Toast.makeText(Ver_Profesor.this, "Profesor" + user.getText() +
-                                    " añadido a favoritos",
-                            Toast.LENGTH_SHORT).show();
+                    boolean flag = true;
+                    m_profesores = facade.getProfesoresFavoritos();
+                    for(ProfesorVO i_prof: m_profesores)
+                        if(i_prof.getNombreUsuario().equals(profesor.getNombreUsuario()))
+                            flag = false;
+
+                    if(flag) {
+                        facade.anyadir_profesor_favorito(profesor);
+                        Toast.makeText(Ver_Profesor.this, "Profesor " + user.getText() +
+                                        " añadido a favoritos", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(Ver_Profesor.this, "Profesor " + user.getText() +
+                                " ya ha sido añadido", Toast.LENGTH_SHORT).show();
                 } catch (APIexception apIexception) {
                     apIexception.printStackTrace();
                 }
@@ -221,6 +232,9 @@ public class Ver_Profesor extends AppCompatActivity {
         experiencia = (TextView) findViewById(R.id.experienciaProfesorPerfil);
         experiencia.setText(profesor.getExperiencia());
 
+        rat = (RatingBar) findViewById(R.id.ratingBarVerProfesorMed);
+        rat.setRating(profesor.getValoracion().floatValue());
+
         // Llamada a los métodos para poblar los distintos Spinners. Solo está el de asignaturas.
         populateAsignaturasSpinner();
         populateCursosSpinner();
@@ -236,9 +250,6 @@ public class Ver_Profesor extends AppCompatActivity {
 
         modalidad = (TextView) findViewById(R.id.modalidadProfesorPerfil);
         modalidad.setText(profesor.getModalidad());
-
-        valoracionMedia = (TextView) findViewById(R.id.valoracionesProfesorPerfil);
-        valoracionMedia.setText(profesor.getValoracion().toString());
 
     }
 

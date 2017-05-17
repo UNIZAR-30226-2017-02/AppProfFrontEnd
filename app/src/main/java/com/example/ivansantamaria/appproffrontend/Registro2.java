@@ -69,7 +69,7 @@ public class Registro2 extends AppCompatActivity {
                 public void onClick(View view) {
                     final int code = guardarEnBdAl();
                     if (code == -1) {
-                        info.set(user,0);
+                        info.set(usrAl,0);
                         try {
                             facade.login(new PersonaVO(usrAl,pswAl),0);
                         } catch (APIexception ex) {}

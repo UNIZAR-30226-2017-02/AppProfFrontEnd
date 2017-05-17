@@ -203,7 +203,7 @@
             </LinearLayout>
 
 
-            <LinearLayout android:orientation="horizontal"
+            <LinearLayout android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -213,14 +213,20 @@
                     android:fontFamily="sans-serif-medium"
                     android:layout_marginTop="20dp"
                     android:textSize="20sp"/>
-                <TextView android:id="@+id/valoracionesProfesorPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="20sp"/>
 
+                <LinearLayout android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <RatingBar
+                        android:id="@+id/ratingBarVerProfesorMed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:stepSize="1.0"
+                        android:rating="0.0" />
+                </LinearLayout>
 
             </LinearLayout>
 
