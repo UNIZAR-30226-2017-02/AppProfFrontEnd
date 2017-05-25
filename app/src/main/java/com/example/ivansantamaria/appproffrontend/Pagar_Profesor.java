@@ -25,6 +25,7 @@ public class Pagar_Profesor extends AppCompatActivity {
     private Facade facade;
     private API api;
     private InfoSesion info;
+    private ProfesorVO profesor;
 
     private static final ArrayList<String> mesCadList = new ArrayList<String>()
     {{ add("---"); add("01"); add("02"); add("03"); add("04"); add("05"); add("06"); add("07");
@@ -42,7 +43,10 @@ public class Pagar_Profesor extends AppCompatActivity {
         info = new InfoSesion(this);
         api = new API("http://10.0.2.2:8080", this);
         facade = new Facade(api);
-        populateFields();
+        try {
+            profesor = facade.perfilProfesor(info.getUsername());
+            populateFields();
+        } catch (APIexception ex) {}
 
         final com.example.ivansantamaria.appproffrontend.Pagar_Profesor local = this;
         pagarButton = (Button) findViewById(R.id.pagarProfesor);
@@ -87,7 +91,7 @@ public class Pagar_Profesor extends AppCompatActivity {
         titular = (EditText) findViewById(R.id.propietario);
 
         user = (TextView) findViewById(R.id.usuarioProfesorPagar);
-        user.setText("Isak");
+        user.setText(profesor.getNombreUsuario());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, R.layout.row_spinner, mesCadList);

@@ -30,7 +30,6 @@ public class Ver_Profesor extends AppCompatActivity {
     private TextView email;
     private TextView telefono;
     private TextView modalidad;
-    private RatingBar rat;
     private ArrayList<ProfesorVO> m_profesores;
 
     private RatingBar barraValoracion;
@@ -123,6 +122,7 @@ public class Ver_Profesor extends AppCompatActivity {
     public void addListenerOnRatingBar() {
 
         barraValoracion = (RatingBar) findViewById(R.id.ratingBarVerProfesor);
+        barraValoracion.setRating(profesor.getValoracion().floatValue());
         txtValoracionPerfil = (TextView) findViewById(R.id.txtValoracionPerfilProfesor);
 
         barraValoracion.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
@@ -231,9 +231,6 @@ public class Ver_Profesor extends AppCompatActivity {
 
         experiencia = (TextView) findViewById(R.id.experienciaProfesorPerfil);
         experiencia.setText(profesor.getExperiencia());
-
-        rat = (RatingBar) findViewById(R.id.ratingBarVerProfesorMed);
-        rat.setRating(profesor.getValoracion().floatValue());
 
         // Llamada a los métodos para poblar los distintos Spinners. Solo está el de asignaturas.
         populateAsignaturasSpinner();

@@ -27,7 +27,7 @@
         <activity
             android:name=".Perfil_Profesor"
             android:label="@string/app_name"
-            android:parentActivityName=".Perfil_Profesor" />
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".Pagar_Profesor"
             android:label="@string/app_name"
