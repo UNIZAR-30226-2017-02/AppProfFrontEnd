@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ProfesorVO extends PersonaVO{
+public class ProfesorVO extends PersonaVO implements Comparable<ProfesorVO>{
 
     private String telefono = null;
     private String mail = null;
@@ -18,6 +18,7 @@ public class ProfesorVO extends PersonaVO{
     private String experiencia = null;
     private String modalidad = null;
     private String id = null;
+    private int DiasPromocionRestante = 0;
 
     public ProfesorVO() { }
     public ProfesorVO (String nombreUsuario, String password, String telefono, String mail, String ciudad,
@@ -91,9 +92,25 @@ public class ProfesorVO extends PersonaVO{
             if (jsonObject.has("valoracionMedia")) this.valoracion = jsonObject.getDouble("valoracionMedia");
             if (jsonObject.has("experiencia")) this.experiencia = jsonObject.getString("experiencia");
             if (jsonObject.has("modalidad")) this.modalidad = jsonObject.getString("modalidad");
+            if (jsonObject.has("diasPromocionRestantes")) this.DiasPromocionRestante =
+                    jsonObject.getInt("diasPromocionRestantes");
 
 
         } catch (JSONException e) {e.printStackTrace();}
+    }
+
+    @Override
+    public int compareTo(ProfesorVO prof) {
+        if(this.DiasPromocionRestante > prof.DiasPromocionRestante)
+            return -1;
+        else if(this.DiasPromocionRestante < prof.DiasPromocionRestante)
+            return 1;
+        else if(this.getValoracion() > prof.getValoracion())
+            return -1;
+        else if(this.getValoracion() < prof.getValoracion())
+            return 1;
+        else
+            return 0;
     }
 
     public String getId() {
@@ -180,5 +197,12 @@ public class ProfesorVO extends PersonaVO{
     }
     public void setModalidad(String modalidad) {
         this.modalidad = modalidad;
+    }
+
+    public int getDiasPromocionRestante() {
+        return DiasPromocionRestante;
+    }
+    public void setDiasPromocionRestante(int diasPromocionRestante) {
+        DiasPromocionRestante = diasPromocionRestante;
     }
 }

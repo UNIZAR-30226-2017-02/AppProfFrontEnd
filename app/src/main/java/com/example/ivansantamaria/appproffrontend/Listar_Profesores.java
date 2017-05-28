@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +28,7 @@ public class Listar_Profesores extends AppCompatActivity {
     private ArrayList<String> horarios;
     private ArrayList<String> asignaturas;
     private ArrayList<String> cursos;
+    private static Bundle extras;
 
     private ArrayList<String> userNames;
 
@@ -44,7 +46,8 @@ public class Listar_Profesores extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
 
         // Recogemos los datos para realizar la busqueda
-        Bundle extras = getIntent().getExtras();
+        if(getIntent().getExtras() != null)
+            extras = getIntent().getExtras();
 
 
         // Nombre y ciudad si no han sido rellenados -> ""
@@ -77,6 +80,7 @@ public class Listar_Profesores extends AppCompatActivity {
         Facade facade = new Facade();
         //Buscamos los profesores
         m_profesores = getData();//Facade.buscarProfesores(nombre,ciudad, horario, asignatura, curso);
+        Collections.sort(m_profesores);
         //m_profesores.add(facade.perfilProfesor("David"));
         //m_profesores.add(facade.perfilProfesor("Fuste"));
 

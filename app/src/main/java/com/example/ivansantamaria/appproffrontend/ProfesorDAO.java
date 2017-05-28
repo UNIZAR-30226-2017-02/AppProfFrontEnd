@@ -137,7 +137,20 @@ public class ProfesorDAO {
     }
 
     public void profesorPagar(API api) throws APIexception {
+
+        Integer pago = 0;
         JSONObject respuesta =  api.get("/api/perfil/info");
+        try {
+            pago = respuesta.getInt("diasPromocionRestantes");
+        } catch (JSONException e) {}
+
+        JSONObject payload = new JSONObject();
+        try {
+            payload.put("diasPromocionRestantes", pago + 5);
+            payload.put("tipo", 1);
+        } catch (JSONException ex) {}
+
+        api.post("/api/perfil/set", payload);
     }
 
     public int registro_profesor(API api, ProfesorVO prof) throws APIexception{
