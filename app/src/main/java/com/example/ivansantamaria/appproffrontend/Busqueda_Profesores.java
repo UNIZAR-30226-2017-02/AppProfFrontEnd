@@ -2,14 +2,12 @@ package com.example.ivansantamaria.appproffrontend;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -18,27 +16,29 @@ public class Busqueda_Profesores extends AppCompatActivity implements MultiSpinn
     //private String nombreUsuario;
 
 
+    /**
+     * identificador para la actividad de listar profesores de busqueda
+     */
+    private static final int ACTIVITY_LISTAR_BUSQUEDA = 0;
+    /**
+     * identificador para la actividad de listar profesores favoritos
+     */
+    private static final int ACTIVITY_LISTAR_FAVORITOS = 1;
     private API api;
     private EditText nombre;
     private EditText ciudad;
     private MultiSpinner horarios;
     private MultiSpinner asignaturas;
     private MultiSpinner cursos;
-
     private Button buscarProfesor = null;
     private Button favoritoProfesor = null;
-
-    /** identificador para la actividad de listar profesores de busqueda */
-    private static final int ACTIVITY_LISTAR_BUSQUEDA=0;
-    /** identificador para la actividad de listar profesores favoritos */
-    private static final int ACTIVITY_LISTAR_FAVORITOS=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda__profesores);
 
-        api = new API("http://10.0.2.2:8080", this);
+        api = new API(this);
         final com.example.ivansantamaria.appproffrontend.Busqueda_Profesores local = this;
         buscarProfesor = (Button) findViewById(R.id.buscarProfesor);
         favoritoProfesor = (Button) findViewById(R.id.favoritoProfesor);

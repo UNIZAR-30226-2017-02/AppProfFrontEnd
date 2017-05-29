@@ -62,7 +62,7 @@ public class Ver_Favorito extends AppCompatActivity {
         buscarProfesor = intent.getStringExtra("nombreUsuario");
 
         info = new InfoSesion(this);
-        api = new API("http://10.0.2.2:8080", this);
+        api = new API(this);
         facade = new Facade(api);
         try {
             profesor = facade.verProfesor(buscarProfesor);

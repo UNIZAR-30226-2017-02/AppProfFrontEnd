@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        api = new API("http://10.0.2.2:8080", this);
+        api = new API(this);
     }
 
     private void attemptSignUp() {

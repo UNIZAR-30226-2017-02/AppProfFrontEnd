@@ -15,6 +15,36 @@ import java.util.ArrayList;
 
 public class Pagar_Profesor extends AppCompatActivity {
 
+    private static final ArrayList<String> mesCadList = new ArrayList<String>() {{
+        add("---");
+        add("01");
+        add("02");
+        add("03");
+        add("04");
+        add("05");
+        add("06");
+        add("07");
+        add("08");
+        add("09");
+        add("10");
+        add("11");
+        add("12");
+    }};
+    private static final ArrayList<String> anyoCadList = new ArrayList<String>() {{
+        add("---");
+        add("2016");
+        add("2017");
+        add("2018");
+        add("2019");
+        add("2020");
+        add("2021");
+        add("2022");
+        add("2023");
+        add("2024");
+        add("2025");
+        add("2026");
+        add("2027");
+    }};
     private TextView user;
     private EditText tarjeta;
     private EditText digito;
@@ -27,21 +57,13 @@ public class Pagar_Profesor extends AppCompatActivity {
     private InfoSesion info;
     private ProfesorVO profesor;
 
-    private static final ArrayList<String> mesCadList = new ArrayList<String>()
-    {{ add("---"); add("01"); add("02"); add("03"); add("04"); add("05"); add("06"); add("07");
-        add("08"); add("09"); add("10"); add("11"); add("12");}};
-
-    private static final ArrayList<String> anyoCadList = new ArrayList<String>()
-    {{ add("---"); add("2016"); add("2017"); add("2018"); add("2019"); add("2020"); add("2021"); add("2022");
-        add("2023"); add("2024"); add("2025"); add("2026"); add("2027");}};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagar__profesor);
 
         info = new InfoSesion(this);
-        api = new API("http://10.0.2.2:8080", this);
+        api = new API(this);
         facade = new Facade(api);
         try {
             profesor = facade.perfilProfesor(info.getUsername());

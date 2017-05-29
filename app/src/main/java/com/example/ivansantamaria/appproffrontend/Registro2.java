@@ -80,7 +80,7 @@ public class Registro2 extends AppCompatActivity {
             });
         }
 
-        api = new API("http://10.0.2.2:8080", this);
+        api = new API(this);
     }
 
     private int guardarEnBdProf(final Intent i) {

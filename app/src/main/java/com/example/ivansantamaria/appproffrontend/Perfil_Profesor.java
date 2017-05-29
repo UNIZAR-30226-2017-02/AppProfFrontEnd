@@ -59,7 +59,7 @@ public class Perfil_Profesor extends AppCompatActivity {
             }
         });
 
-        api = new API("http://10.0.2.2:8080", this);
+        api = new API(this);
         facade = new Facade(api);
         try {
             profesor = facade.perfilProfesor(info.getUsername());

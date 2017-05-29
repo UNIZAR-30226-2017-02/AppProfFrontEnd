@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,7 +40,7 @@ public class Registro3 extends AppCompatActivity implements MultiSpinner.MultiSp
         password = getIntent().getExtras().getString("profesor_psw");
         info = new InfoSesion(this);
 
-        api = new API("http://10.0.2.2:8080", this);
+        api = new API(this);
         facade = new Facade(api);
         setContentView(R.layout.activity_registro3_profesor);
         horario = (MultiSpinner) findViewById(R.id.horariosProfesorReg);

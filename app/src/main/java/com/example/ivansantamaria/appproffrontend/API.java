@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
-import android.preference.PreferenceManager;
 import android.util.Log;
-
-import com.mongodb.util.JSON;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +21,7 @@ import java.net.URL;
 public class API
 {
 	// Direccion base al backend
-	private String baseurl;
+    private String baseurl = new String("http://approf-approf.1d35.starter-us-east-1.openshiftapps.com");
 
 	// Token de la app
 	private String token;
@@ -34,9 +31,7 @@ public class API
 	/*
 	 * Constructor de la clase. baseurl es del tipo http://localhost:8080
 	 */
-	public API (String _baseurl, Activity _context)
-	{
-		this.baseurl = _baseurl;
+    public API(Activity _context) {
         // Lee de la memoria del telefono si se tenía el token (Inicio automatico)
         this.sharedPref = _context.getSharedPreferences("APPROF", Context.MODE_PRIVATE);
         this.token = sharedPref.getString("token", null);

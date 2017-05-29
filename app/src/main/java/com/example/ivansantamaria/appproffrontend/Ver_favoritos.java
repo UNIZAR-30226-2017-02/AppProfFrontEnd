@@ -2,8 +2,8 @@ package com.example.ivansantamaria.appproffrontend;
 
 import android.content.Intent;
 import android.database.MatrixCursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -14,25 +14,23 @@ import java.util.ArrayList;
 
 public class Ver_favoritos extends AppCompatActivity {
 
+    /**
+     * identificador para la actividad de ver profesor seleccionado
+     */
+    private static final int ACTIVITY_VER_PROFESOR = 0;
     private String profesor;
-
     private String nombre;
     private ArrayList<String> asignatura;
-
     private ListView listView;
     private ArrayList<ProfesorVO> m_profesores;
-
     private API api;
-
-    /** identificador para la actividad de ver profesor seleccionado */
-    private static final int ACTIVITY_VER_PROFESOR=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar__profesores);
 
-        api = new API("http://10.0.2.2:8080", this);
+        api = new API(this);
         listView = (ListView) findViewById(R.id.list);
 
         // Recogemos los datos para realizar la busqueda

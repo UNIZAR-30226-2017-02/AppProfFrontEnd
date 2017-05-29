@@ -2,41 +2,47 @@ package com.example.ivansantamaria.appproffrontend;
 
 import android.content.Intent;
 import android.database.MatrixCursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class Listar_Profesores extends AppCompatActivity {
 
+    /**
+     * identificador para la actividad de ver profesor seleccionado
+     */
+    private static final int ACTIVITY_VER_PROFESOR = 0;
+    private static Bundle extras;
     private String profesor;
-
     private String nombre;
     private String ciudad;
     private ArrayList<String> horarios;
     private ArrayList<String> asignaturas;
     private ArrayList<String> cursos;
-    private static Bundle extras;
-
     private ArrayList<String> userNames;
-
     private ListView listView;
     private ArrayList<ProfesorVO> m_profesores;
 
-    /** identificador para la actividad de ver profesor seleccionado */
-    private static final int ACTIVITY_VER_PROFESOR=0;
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,8 +142,8 @@ public class Listar_Profesores extends AppCompatActivity {
         startActivityForResult(i, ACTIVITY_VER_PROFESOR);
     }
 
-    private ArrayList<ProfesorVO> getData(){
-        API api = new API("http://10.0.2.2:8080",this);
+    private ArrayList<ProfesorVO> getData() {
+        API api = new API(this);
         JSONObject jsonPost = new JSONObject();
         ArrayList<ProfesorVO> list = new ArrayList<>();
         userNames = new ArrayList<>();
@@ -216,14 +222,6 @@ public class Listar_Profesores extends AppCompatActivity {
             }
         }
         return horariosprof;
-    }
-
-    public static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
     }
 
 }
