@@ -71,7 +71,7 @@ public class Listar_Profesores extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView c = (TextView) view.findViewById(R.id.nombreProfesorListar);
                 //profesor = c.getText().toString();
-                profesor = userNames.get(position);
+                profesor = m_profesores.get(position).getNombreUsuario();
                 verProfesor();
             }
         });
